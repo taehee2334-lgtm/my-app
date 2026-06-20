@@ -1,20 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 
-const IMG = 'https://www.figma.com/api/mcp/asset/091cf478-4583-49a1-bd60-5de88713eeb1';
+const IMG = 'https://www.figma.com/api/mcp/asset/091cf478-4583-49a1-bd60-5de88713eeb1'; // 402×1378
 const TABS = ['전체', '국민', '롯데', '비씨', '신한', '삼성', '농협', '현대', '우리', '기타'];
 
 export default function SettlementDetailWaiting() {
   const navigate = useNavigate();
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', minHeight: '100vh' }}>
       <style>{`._tab-ov::-webkit-scrollbar{display:none}`}</style>
       <div style={{ position: 'relative' }}>
         <img src={IMG} alt="" style={{ width: '100%', display: 'block' }} draggable={false} />
 
-        {/* 카드 탭 좌우 드래그 오버레이 (이미지 탭 위치: ~36%) */}
+        {/* 카드 탭 좌우 드래그 (~36%) */}
         <div className="_tab-ov" style={{
-          position: 'absolute', top: '36%', left: 0,
-          width: '100%', height: '3%',
+          position: 'absolute', top: '36%', left: 0, width: '100%', height: '3%',
           overflowX: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none',
           WebkitOverflowScrolling: 'touch', touchAction: 'pan-x',
           cursor: 'grab', zIndex: 5,

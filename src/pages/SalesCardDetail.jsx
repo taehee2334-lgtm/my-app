@@ -18,12 +18,12 @@ export default function SalesCardDetail() {
   }, []);
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', minHeight: '100vh' }}>
       <style>{`._tab-ov::-webkit-scrollbar{display:none}`}</style>
       <div style={{ position: 'relative' }}>
         <img src={IMG} alt="" style={{ width: '100%', display: 'block' }} draggable={false} />
 
-        {/* 카드 탭 좌우 드래그 오버레이 (이미지 탭 위치: ~44%) */}
+        {/* 카드 탭 좌우 드래그 (이미지 탭 위치 ~44%) */}
         <div className="_tab-ov" style={{
           position: 'absolute', top: '44%', left: 0,
           width: '100%', height: '2.5%',
@@ -38,12 +38,16 @@ export default function SalesCardDetail() {
           ))}
         </div>
 
-        {/* 뒤로가기 */}
+        {/* 뒤로가기 (좌상단 < 버튼) */}
         <div onClick={() => navigate('/sales')}
-          style={{ position: 'absolute', top: '1%', left: 0, width: '12%', height: '3%', cursor: 'pointer', zIndex: 10 }} />
+          style={{ position: 'absolute', top: '1%', left: 0, width: '12%', height: '2%', cursor: 'pointer', zIndex: 10 }} />
+
+        {/* 건수 별로 보기 ∧ → 매출 1 (~30%) */}
+        <div onClick={() => navigate('/sales')}
+          style={{ position: 'absolute', top: '29%', left: '20%', width: '60%', height: '3%', cursor: 'pointer', zIndex: 10 }} />
       </div>
 
-      {/* Supabase 데이터 리스트 */}
+      {/* Supabase 건별 내역 */}
       <div style={{ padding: '0 16px 24px' }}>
         {loading && <p style={{ color: '#999', fontSize: '14px', padding: '16px 0' }}>불러오는 중...</p>}
         {!loading && data.length === 0 && <p style={{ color: '#aaa', fontSize: '14px', textAlign: 'center', padding: '24px 0' }}>데이터가 없습니다</p>}

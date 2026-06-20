@@ -54,6 +54,19 @@ function App() {
         <Route path="/missing/bank-change" element={<MissingBankChange />} />
         <Route path="/advance-settlement" element={<AdvanceSettlement />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/settlement/calendar" element={<SettlementCalendar />} />
+        <Route path="/missing/2-1" element={<Missing2_1 />} />
+        <Route path="/missing/2-2" element={<Missing2_2 />} />
+        <Route path="/missing/3" element={<Missing3 />} />
+        <Route path="/missing/3-1" element={<Missing3_1 />} />
+        <Route path="/missing/3-2" element={<Missing3_2 />} />
+        <Route path="/missing/4" element={<Missing4 />} />
+        <Route path="/missing/4-1" element={<Missing4_1 />} />
+        <Route path="/missing/4-2" element={<Missing4_2 />} />
+        <Route path="/missing/4-3" element={<Missing4_3 />} />
+        <Route path="/missing/4-4" element={<Missing4_4 />} />
+        <Route path="/missing/5" element={<Missing5 />} />
+        <Route path="/advance-settlement/2" element={<AdvanceSettlement2 />} />
       </Routes>
     </BrowserRouter>
   );

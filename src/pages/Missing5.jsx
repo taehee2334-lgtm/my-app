@@ -1,8 +1,8 @@
 import AnimatedScreen from '../components/AnimatedScreen';
 
-const IMG = 'https://www.figma.com/api/mcp/asset/96755748-43bc-41cc-9884-a6fe0ad1edfe'; // 402×1210
+const IMG = 'https://www.figma.com/api/mcp/asset/7f10c248-9cde-4683-9022-6c435be4bf8b'; // 402×1210
 
-export default function MissingSuspiciousDuplicate() {
+export default function Missing5() {
   return (
     <AnimatedScreen
       imageUrl={IMG}
@@ -17,9 +17,7 @@ export default function MissingSuspiciousDuplicate() {
         { yStart: 875, yEnd: 1210 },
       ]}
       zones={[
-        { top: '55%', height: '7%', to: '/missing/2-1' },       // 카드사로 증빙 전송
-        { top: '68%', height: '6%', to: '/' },                   // 하루 더 기다려볼게요
-        { top: '83%', height: '6%', to: '/advance-settlement' }, // 선정산 신청하기
+        { top: '83%', height: '6%', to: '/advance-settlement' },
       ]}
     />
   );
