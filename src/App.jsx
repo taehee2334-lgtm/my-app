@@ -19,6 +19,10 @@ import MissingResendComplete from './pages/MissingResendComplete';
 import MissingPosResendComplete from './pages/MissingPosResendComplete';
 import MissingInfoChange from './pages/MissingInfoChange';
 import MissingBankChange from './pages/MissingBankChange';
+import MissingInfoAccount from './pages/MissingInfoAccount';
+import MissingInfoOwner from './pages/MissingInfoOwner';
+import MissingInfoCorporate from './pages/MissingInfoCorporate';
+import MissingInfoUnknown from './pages/MissingInfoUnknown';
 import AdvanceSettlement from './pages/AdvanceSettlement';
 
 const MISSING_PATHS = [
@@ -58,6 +62,10 @@ function App() {
         <Route path="/missing/pos-resend-complete" element={<MissingPosResendComplete />} />
         <Route path="/missing/info-change" element={<MissingInfoChange />} />
         <Route path="/missing/bank-change" element={<MissingBankChange />} />
+        <Route path="/missing/info-account" element={<MissingInfoAccount />} />
+        <Route path="/missing/info-owner" element={<MissingInfoOwner />} />
+        <Route path="/missing/info-corporate" element={<MissingInfoCorporate />} />
+        <Route path="/missing/info-unknown" element={<MissingInfoUnknown />} />
         <Route path="/advance-settlement" element={<AdvanceSettlement />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
