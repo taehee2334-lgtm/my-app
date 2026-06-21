@@ -16,6 +16,7 @@ import MissingReceiptSent from './pages/MissingReceiptSent';
 import MissingWaitDay from './pages/MissingWaitDay';
 import MissingSuspiciousPos from './pages/MissingSuspiciousPos';
 import MissingResendComplete from './pages/MissingResendComplete';
+import MissingPosResendComplete from './pages/MissingPosResendComplete';
 import MissingInfoChange from './pages/MissingInfoChange';
 import MissingBankChange from './pages/MissingBankChange';
 import AdvanceSettlement from './pages/AdvanceSettlement';
@@ -54,6 +55,7 @@ function App() {
         <Route path="/missing/wait-day" element={<MissingWaitDay />} />
         <Route path="/missing/suspicious-pos" element={<MissingSuspiciousPos />} />
         <Route path="/missing/resend-complete" element={<MissingResendComplete />} />
+        <Route path="/missing/pos-resend-complete" element={<MissingPosResendComplete />} />
         <Route path="/missing/info-change" element={<MissingInfoChange />} />
         <Route path="/missing/bank-change" element={<MissingBankChange />} />
         <Route path="/advance-settlement" element={<AdvanceSettlement />} />

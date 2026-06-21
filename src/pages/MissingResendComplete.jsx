@@ -1,23 +1,10 @@
-import AnimatedScreen from '../components/AnimatedScreen';
-
-const IMG = 'https://www.figma.com/api/mcp/asset/6964ea96-8b07-43eb-8d23-71fded961bb2';
-
+import ScreenPage from '../components/ScreenPage';
+const IMG = 'https://www.figma.com/api/mcp/asset/ec6bc5da-913c-4770-9ad2-0efcbc134f88';
 export default function MissingResendComplete() {
   return (
-    <AnimatedScreen
-      imageUrl={IMG}
-      imageHeight={1077}
-      backTo="/"
-      sections={[
-        { yStart: 0,    yEnd: 165,  always: true },
-        { yStart: 165,  yEnd: 290 },                  // 체크마크
-        { yStart: 290,  yEnd: 510 },                  // 설명 텍스트
-        { yStart: 510,  yEnd: 720 },                  // 재전송 신청 버튼
-        { yStart: 720,  yEnd: 1077 },                 // 사업자 정보 + 연결
-      ]}
-      zones={[
-        { top: '90%', height: '5%', to: '/' },        // 확인 버튼 → 홈
-      ]}
-    />
+    <ScreenPage imageUrl={IMG} zones={[
+      { top: '2%', left: '0', width: '12%', height: '5%', to: '/missing/suspicious-pos' },
+      { top: '38%', left: '16%', width: '66%', height: '5%', to: '/missing/pos-resend-complete' },
+    ]} />
   );
 }

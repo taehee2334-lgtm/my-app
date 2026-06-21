@@ -1,25 +1,12 @@
-import AnimatedScreen from '../components/AnimatedScreen';
-
-const IMG = 'https://www.figma.com/api/mcp/asset/a4592a5e-2e49-4bcb-80ff-6685c076df67';
-
+import ScreenPage from '../components/ScreenPage';
+const IMG = 'https://www.figma.com/api/mcp/asset/39d603b1-58f5-4d41-8ecc-2bd7ea2814b3';
 export default function MissingSuspiciousPos() {
   return (
-    <AnimatedScreen
-      imageUrl={IMG}
-      imageHeight={1210}
-      backTo="/"
-      sections={[
-        { yStart: 0,    yEnd: 170,  always: true },
-        { yStart: 170,  yEnd: 330 },
-        { yStart: 330,  yEnd: 470 },
-        { yStart: 470,  yEnd: 670 },
-        { yStart: 670,  yEnd: 875 },
-        { yStart: 875,  yEnd: 1210 },
-      ]}
-      zones={[
-        { top: '75%', height: '5%', to: '/' },
-        { top: '82%', height: '5%', to: '/advance-settlement' },
-      ]}
-    />
+    <ScreenPage imageUrl={IMG} zones={[
+      { top: '2%', left: '0', width: '12%', height: '4%', to: '/' },
+      { top: '63%', left: '17%', width: '66%', height: '5%', to: '/missing/resend-complete' },
+      { top: '68%', left: '17%', width: '66%', height: '5%', to: '/missing/wait-day' },
+      { top: '79%', left: '17%', width: '66%', height: '5%', to: '/advance-settlement' },
+    ]} />
   );
 }
