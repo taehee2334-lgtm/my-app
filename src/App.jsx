@@ -27,6 +27,7 @@ import Missing4_2 from './pages/Missing4_2';
 import Missing4_3 from './pages/Missing4_3';
 import Missing4_4 from './pages/Missing4_4';
 import Missing5 from './pages/Missing5';
+import Missing6 from './pages/Missing6';
 import AdvanceSettlement from './pages/AdvanceSettlement';
 import AdvanceSettlement2 from './pages/AdvanceSettlement2';
 
@@ -73,6 +74,7 @@ function App() {
         <Route path="/missing/4-3" element={<Missing4_3 />} />
         <Route path="/missing/4-4" element={<Missing4_4 />} />
         <Route path="/missing/5" element={<Missing5 />} />
+        <Route path="/missing/6" element={<Missing6 />} />
 
         {/* 구 경로 호환 유지 */}
         <Route path="/missing/normal" element={<MissingNormal />} />

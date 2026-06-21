@@ -1,26 +1,11 @@
-import AnimatedScreen from '../components/AnimatedScreen';
-
-const IMG = 'https://www.figma.com/api/mcp/asset/96755748-43bc-41cc-9884-a6fe0ad1edfe'; // 402×1210
-
+import ScreenPage from '../components/ScreenPage';
+const IMG = 'https://www.figma.com/api/mcp/asset/aca82502-26a7-4c84-9de5-2493c5fde473';
 export default function MissingSuspiciousDuplicate() {
   return (
-    <AnimatedScreen
-      imageUrl={IMG}
-      imageHeight={1210}
-      backTo="/"
-      sections={[
-        { yStart: 0,   yEnd: 170,  always: true },
-        { yStart: 170, yEnd: 330 },
-        { yStart: 330, yEnd: 470 },
-        { yStart: 470, yEnd: 670 },
-        { yStart: 670, yEnd: 875 },
-        { yStart: 875, yEnd: 1210 },
-      ]}
-      zones={[
-        { top: '55%', height: '7%', to: '/missing/2-1' },       // 카드사로 증빙 전송
-        { top: '68%', height: '6%', to: '/' },                   // 하루 더 기다려볼게요
-        { top: '83%', height: '6%', to: '/advance-settlement' }, // 선정산 신청하기
-      ]}
-    />
+    <ScreenPage imageUrl={IMG} zones={[
+      { top: '63%', left: '17%', width: '66%', height: '4%', to: '/missing/2-1' },
+      { top: '68%', left: '17%', width: '66%', height: '4%', to: '/missing/6' },
+      { top: '79.5%', left: '17%', width: '66%', height: '4%', to: '/advance-settlement' },
+    ]} />
   );
 }
