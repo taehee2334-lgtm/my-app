@@ -24,6 +24,7 @@ import MissingInfoOwner from './pages/MissingInfoOwner';
 import MissingInfoCorporate from './pages/MissingInfoCorporate';
 import MissingInfoUnknown from './pages/MissingInfoUnknown';
 import AdvanceSettlement from './pages/AdvanceSettlement';
+import AdvanceSettlement2 from './pages/AdvanceSettlement2';
 
 const MISSING_PATHS = [
   '/missing/normal',
@@ -67,6 +68,7 @@ function App() {
         <Route path="/missing/info-corporate" element={<MissingInfoCorporate />} />
         <Route path="/missing/info-unknown" element={<MissingInfoUnknown />} />
         <Route path="/advance-settlement" element={<AdvanceSettlement />} />
+        <Route path="/advance-settlement-2" element={<AdvanceSettlement2 />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
