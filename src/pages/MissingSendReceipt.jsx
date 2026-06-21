@@ -1,19 +1,10 @@
-import AnimatedScreen from '../components/AnimatedScreen';
-
-const IMG = 'https://www.figma.com/api/mcp/asset/58ebcaf8-8286-4d76-afa8-58932301f899';
-
+import ScreenPage from '../components/ScreenPage';
+const IMG = 'https://www.figma.com/api/mcp/asset/f9fd3a32-2179-444b-8206-b4048d41c96c';
 export default function MissingSendReceipt() {
   return (
-    <AnimatedScreen
-      imageUrl={IMG}
-      imageHeight={1077}
-      backTo="/"
-      sections={[
-        { yStart: 0,    yEnd: 165,  always: true },  // 헤더
-        { yStart: 165,  yEnd: 380 },                  // 설명 카드
-        { yStart: 380,  yEnd: 875 },                  // 증빙 전송 + 영수증
-        { yStart: 875,  yEnd: 1077 },                 // 버튼
-      ]}
-    />
+    <ScreenPage imageUrl={IMG} zones={[
+      { top: '2%', left: '0', width: '12%', height: '5%', to: '/missing/suspicious-duplicate' },
+      { top: '76%', left: '17%', width: '66%', height: '5%', to: '/missing/receipt-sent' },
+    ]} />
   );
 }
