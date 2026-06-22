@@ -1,22 +1,22 @@
 import { useNavigate } from 'react-router-dom'
 
-const imgLine195 = "https://www.figma.com/api/mcp/asset/f4492508-40c6-4180-80b6-6f758ace4199";
-const imgArrowBackIos = "https://www.figma.com/api/mcp/asset/4e52e55f-4a83-4583-a398-10fd45fe51ca";
-const imgArrowLeft = "https://www.figma.com/api/mcp/asset/4bd6adc1-c3ec-4aea-a1dc-c1e5524d73b2";
-const imgArrowRight = "https://www.figma.com/api/mcp/asset/1f79881e-3ec5-4850-a706-d90d43100991";
-const imgLine203 = "https://www.figma.com/api/mcp/asset/20d7ea76-a9ef-47c1-836e-c326153e60ad";
-const imgLine205 = "https://www.figma.com/api/mcp/asset/75ea0690-437e-450a-8224-afec3e5056af";
-const imgLine188 = "https://www.figma.com/api/mcp/asset/42458f7f-455a-482b-a075-399c90445535";
-const imgUnion = "https://www.figma.com/api/mcp/asset/e42721b7-5eb8-48ce-9b48-8cd197fbd2cf";
-const imgUnion1 = "https://www.figma.com/api/mcp/asset/234a6b74-d4ca-4d17-be1a-7bc8837616e6";
-const imgLine208 = "https://www.figma.com/api/mcp/asset/5f67d0c6-0260-4a61-86cb-62583b7cbfcf";
-const imgLine209 = "https://www.figma.com/api/mcp/asset/b57f2f03-ea01-44ab-9ef3-8c8f5067ef59";
-const imgEllipse352 = "https://www.figma.com/api/mcp/asset/cda7e83c-71b8-4404-a97a-4522b35d60b9";
-const imgEllipse355 = "https://www.figma.com/api/mcp/asset/4c561286-86a9-4db1-a891-b085538624d1";
-const imgEllipse357 = "https://www.figma.com/api/mcp/asset/faf5cfe8-a0ed-4ca5-9478-afef95fb38dd";
-const imgUnion2 = "https://www.figma.com/api/mcp/asset/40087cf0-9ec1-4ab1-bd6c-4601a401758b";
+const imgLine195 = "https://www.figma.com/api/mcp/asset/61c173f3-71d3-4cd0-9523-0f36b5d53bfa";
+const imgArrowBackIos = "https://www.figma.com/api/mcp/asset/c370c19c-4324-46d3-86ec-4d154747dc53";
+const imgArrowLeft = "https://www.figma.com/api/mcp/asset/ff051f66-477e-4f10-8cde-ab377b4a60ec";
+const imgArrowRight = "https://www.figma.com/api/mcp/asset/037f3916-6fba-4825-838a-7d98a32e9f6d";
+const imgLine203 = "https://www.figma.com/api/mcp/asset/850cd07e-d78b-4370-b5e3-ff209ca01c19";
+const imgLine205 = "https://www.figma.com/api/mcp/asset/e695e18a-8426-474f-ac76-bc5bbf94e98f";
+const imgLine188 = "https://www.figma.com/api/mcp/asset/787be0af-ed17-4979-8a9d-c25e762af787";
+const imgUnion = "https://www.figma.com/api/mcp/asset/dfbcab0b-8949-4bf0-bf50-c7ee367f702b";
+const imgUnion1 = "https://www.figma.com/api/mcp/asset/50531244-9a36-4e47-8fc7-9ef54771028c";
+const imgUnion2 = "https://www.figma.com/api/mcp/asset/5a92c9a2-86d3-456e-b9c5-00ee5b84d299";
+const imgLine208 = "https://www.figma.com/api/mcp/asset/d973669c-8553-4e71-99f1-76aa189b0c95";
+const imgLine209 = "https://www.figma.com/api/mcp/asset/37e97641-7f23-4182-bc77-fc8f6109410e";
+const imgEllipse352 = "https://www.figma.com/api/mcp/asset/4601e15e-c584-44ae-b8bd-35bf3765bbc9";
+const imgEllipse355 = "https://www.figma.com/api/mcp/asset/78ed02e8-3cf3-4cfc-9cb7-fb87c3fbee71";
+const imgEllipse357 = "https://www.figma.com/api/mcp/asset/ed17a95e-6300-41cd-b359-a728d0fe5ad2";
 
-export default function Missing4() {
+export default function Missing2() {
   const navigate = useNavigate()
   return (
     <div className="bg-[#f4f7f9] relative w-[402px] min-h-[1050px]">
@@ -24,6 +24,7 @@ export default function Missing4() {
       <div className="absolute bg-white border border-[#e8edf2] border-solid h-[181px] left-[16px] rounded-[20px] top-[421px] w-[370px]" />
       <div className="absolute bg-[#ffc800] border border-[#e8edf2] border-solid h-[83px] left-[17px] rounded-[41.5px] top-[303px] w-[370px]" />
       <div className="absolute bg-white border border-[#ffc800] border-solid h-[83px] left-[16px] rounded-[41.5px] top-[657px] w-[370px]" />
+      <div className="absolute bg-white border border-[#e8edf2] border-solid h-[123px] left-[16px] rounded-[20px] top-[906px] w-[370px]" />
       <div className="absolute bg-white h-[58px] left-0 top-0 w-[402px]" />
       <div className="absolute bg-white left-[calc(25%+7.5px)] rounded-[8px] size-[33px] top-[74px]" />
       <div className="absolute bg-white left-[calc(50%+61px)] rounded-[8px] size-[33px] top-[74px]" />
@@ -54,28 +55,40 @@ export default function Missing4() {
       <div className="absolute flex h-[35px] items-center justify-center left-1/2 top-[740px] w-0">
         <div className="flex-none rotate-90"><div className="h-0 relative w-[35px]"><div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine203} /></div></div></div>
       </div>
+      <div className="absolute flex h-[35px] items-center justify-center left-[calc(50%+1px)] top-[872px] w-0">
+        <div className="flex-none rotate-90"><div className="h-0 relative w-[35px]"><div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine203} /></div></div></div>
+      </div>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[1.6] left-[calc(25%+40.5px)] not-italic text-[20px] text-white top-[329px] tracking-[-0.2px] whitespace-nowrap">누락 의심 !</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[1.6] left-[calc(50%+43px)] not-italic text-[24px] text-white top-[325px] tracking-[-0.24px] whitespace-nowrap">" 1건 "</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[84px] not-italic text-[#8b97a7] text-[16px] top-[446px] tracking-[-0.16px] whitespace-nowrap">결제일 :</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[97px] not-italic text-[#8b97a7] text-[16px] top-[477px] tracking-[-0.16px] whitespace-nowrap">내역 :</p>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[70px] not-italic text-[#8b97a7] text-[16px] top-[508px] tracking-[-0.16px] whitespace-nowrap">승인번호 :</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(25%+58.5px)] not-italic text-[16px] text-black top-[446px] tracking-[-0.16px] whitespace-nowrap">5월 3일 오후 2시 30분</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(25%+58.5px)] not-italic text-[16px] text-black top-[477px] tracking-[-0.16px] whitespace-nowrap">50,000원 (KB국민카드)</p>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(25%+58.5px)] not-italic text-[16px] text-black top-[508px] tracking-[-0.16px] whitespace-nowrap">12345678</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[52px] not-italic text-[#8b97a7] text-[16px] top-[552px] tracking-[-0.16px] whitespace-nowrap">입금 예정일 :</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(25%+58.5px)] not-italic text-[16px] text-black top-[552px] tracking-[-0.16px] whitespace-nowrap">5월 6일</p>
       <div className="-translate-x-1/2 absolute h-0 left-[calc(50%-0.5px)] top-[543px] w-[333px]">
         <div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine188} /></div>
       </div>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[1.6] left-[calc(50%+55px)] not-italic text-[#2d91ff] text-[16px] top-[552px] tracking-[-0.16px] whitespace-nowrap">1일 초과됨</p>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[1.6] left-[calc(50%-109px)] not-italic text-[#2d91ff] text-[16px] top-[686px] tracking-[-0.16px] whitespace-nowrap">{`예상 지연 이유 : "가맹점 정보 변경"`}</p>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(62.5%-121.25px)] not-italic text-[#2d91ff] text-[12px] top-[621px] tracking-[-0.12px] whitespace-nowrap">{`"입금보류" 건으로 확인 되었어요`}</p>
-      <button onClick={() => navigate('/missing-4-1')} className="cursor-pointer -translate-x-1/2 absolute bg-[#2d91ff] border border-[#2d91ff] border-solid h-[48px] left-[calc(50%+1px)] rounded-[24px] top-[766px] w-[266px]" />
-      <button onClick={() => navigate('/missing-4-2')} className="cursor-pointer -translate-x-1/2 absolute bg-white border border-[#2d91ff] border-solid h-[48px] left-[calc(50%+1px)] rounded-[24px] top-[824px] w-[266px]" />
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[normal] left-[calc(50%-72px)] not-italic text-[16px] text-white top-[780px] tracking-[-0.16px] whitespace-nowrap pointer-events-none">결제 관리 업체 연결하기</p>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[1.6] left-[calc(50%-138px)] not-italic text-[#2d91ff] text-[16px] top-[686px] tracking-[-0.16px] whitespace-nowrap">{`예상 지연 이유 : "중복 결제로 인한 매입보류"`}</p>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(50%-71px)] not-italic text-[#2d91ff] text-[12px] top-[621px] tracking-[-0.12px] whitespace-nowrap">{`"미매입" 건으로 확인 되었어요`}</p>
+      <button onClick={() => navigate('/missing-2-1')} className="cursor-pointer -translate-x-1/2 absolute bg-[#2d91ff] border border-[#2d91ff] border-solid h-[48px] left-[calc(50%+1px)] rounded-[24px] top-[766px] w-[266px]" />
+      <button onClick={() => navigate('/missing-2-2')} className="cursor-pointer -translate-x-1/2 absolute bg-white border border-[#2d91ff] border-solid h-[48px] left-[calc(50%+1px)] rounded-[24px] top-[824px] w-[266px]" />
+      <button onClick={() => navigate('/advance-settlement')} className="cursor-pointer -translate-x-1/2 absolute bg-white border border-[#2d91ff] border-solid h-[48px] left-1/2 rounded-[24px] top-[965px] w-[266px]" />
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[normal] left-[calc(50%-59px)] not-italic text-[16px] text-white top-[781px] tracking-[-0.16px] whitespace-nowrap pointer-events-none">카드사로 증빙 전송</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[normal] left-[calc(25%+34.5px)] not-italic text-[#2d91ff] text-[16px] top-[839px] tracking-[-0.16px] whitespace-nowrap pointer-events-none">하루 더 기다려 볼게요</p>
-      <div className="absolute h-[24.5px] left-[calc(50%+55px)] top-[753px] w-[128px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} /></div>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[normal] left-[calc(50%-50px)] not-italic text-[#2d91ff] text-[16px] top-[980px] tracking-[-0.16px] whitespace-nowrap pointer-events-none">선정산 신청하기</p>
+      <div className="absolute h-[24.5px] left-[calc(50%+55px)] top-[753px] w-[111px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} /></div>
       <div className="absolute h-[24.5px] left-[calc(50%+57px)] top-[809px] w-[111px]"><div className="absolute inset-[-2.04%_-0.45%_-5.19%_-0.45%]"><img alt="" className="block max-w-none size-full" src={imgUnion1} /></div></div>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Light'] leading-[normal] left-[calc(50%+60px)] not-italic text-[#728094] text-[10px] top-[756px] tracking-[-0.1px] whitespace-nowrap">핵심 요약 정보와 함께 연결돼요</p>
+      <div className="absolute flex h-[24.5px] items-center justify-center left-[28px] top-[896px] w-[111px]">
+        <div className="-scale-y-100 flex-none rotate-180"><div className="h-[24.5px] relative w-[111px]"><div className="absolute inset-[-2.04%_-0.45%_-5.19%_-0.45%]"><img alt="" className="block max-w-none size-full" src={imgUnion2} /></div></div></div>
+      </div>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Light'] leading-[normal] left-[calc(50%+62px)] not-italic text-[#728094] text-[10px] top-[756px] tracking-[-0.1px] whitespace-nowrap">전표내역이 자동 발송돼요</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Light'] leading-[normal] left-[calc(50%+75px)] not-italic text-[#728094] text-[10px] top-[812px] tracking-[-0.1px] whitespace-nowrap">내일 다시 알려줘요</p>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Light'] leading-[normal] left-[44px] not-italic text-[10px] text-white top-[899px] tracking-[-0.1px] whitespace-nowrap">연휴 전 조기입금으로!</p>
+      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[99px] not-italic text-[16px] text-black top-[927px] tracking-[-0.16px] whitespace-nowrap">캐시노트가 먼저 입금해드릴까요?</p>
       <div className="absolute h-0 left-[calc(25%+26.5px)] top-[137px] w-[158px]"><div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine208} /></div></div>
       <div className="absolute h-0 left-[calc(25%+28.5px)] top-[137px] w-[104px]"><div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine209} /></div></div>
       <div className="absolute left-[calc(25%+24.5px)] size-[9px] top-[132px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse352} /></div>
@@ -87,20 +100,6 @@ export default function Missing4() {
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Regular'] leading-[normal] left-[calc(50%+14px)] not-italic text-[#2d91ff] text-[10px] top-[148px] tracking-[-0.1px] whitespace-nowrap">신고접수</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Regular'] leading-[normal] left-[calc(50%+67px)] not-italic text-[#8b97a7] text-[10px] top-[148px] tracking-[-0.1px] whitespace-nowrap">입금완료</p>
       <div className="absolute left-[calc(50%+25px)] size-[15px] top-[129px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse357} /></div>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[70px] not-italic text-[#8b97a7] text-[16px] top-[510px] tracking-[-0.16px] whitespace-nowrap">승인번호 :</p>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[calc(25%+58.5px)] not-italic text-[16px] text-black top-[510px] tracking-[-0.16px] whitespace-nowrap">12345678</p>
-      {/* 선정산 섹션 */}
-      <div className="absolute bg-white border border-[#e8edf2] border-solid h-[123px] left-[17px] rounded-[20px] top-[906px] w-[370px]" />
-      <div className="absolute flex h-[35px] items-center justify-center left-[calc(50%+2px)] top-[872px] w-0">
-        <div className="flex-none rotate-90"><div className="h-0 relative w-[35px]"><div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine203} /></div></div></div>
-      </div>
-      <button onClick={() => navigate('/advance-settlement')} className="cursor-pointer -translate-x-1/2 absolute bg-white border border-[#2d91ff] border-solid h-[48px] left-[calc(50%+1px)] rounded-[24px] top-[965px] w-[266px]" />
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[normal] left-[calc(50%-49px)] not-italic text-[#2d91ff] text-[16px] top-[980px] tracking-[-0.16px] whitespace-nowrap pointer-events-none">선정산 신청하기</p>
-      <div className="absolute flex h-[24.5px] items-center justify-center left-[29px] top-[896px] w-[111px]">
-        <div className="-scale-y-100 flex-none rotate-180"><div className="h-[24.5px] relative w-[111px]"><div className="absolute inset-[-2.04%_-0.45%_-5.19%_-0.45%]"><img alt="" className="block max-w-none size-full" src={imgUnion2} /></div></div></div>
-      </div>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Light'] leading-[normal] left-[45px] not-italic text-[10px] text-white top-[899px] tracking-[-0.1px] whitespace-nowrap">현금이 필요하다면?</p>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[1.6] left-[100px] not-italic text-[16px] text-black top-[927px] tracking-[-0.16px] whitespace-nowrap">캐시노트가 먼저 입금해드릴까요?</p>
     </div>
   )
 }
