@@ -90,7 +90,7 @@ export default function Home() {
       </div>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:SemiBold'] leading-[normal] left-[calc(50%+8px)] not-italic text-[#2d91ff] text-[16px] top-[780px] tracking-[-0.16px] whitespace-nowrap">미입금액 있는지 확인</p>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[normal] left-[calc(25%+4.5px)] not-italic text-[#2d91ff] text-[16px] top-[899px] tracking-[-0.16px] whitespace-nowrap">지출</p>
-      <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Medium'] leading-[normal] left-[calc(50%+69px)] not-italic text-[#7e8b9d] text-[16px] top-[899px] tracking-[-0.16px] whitespace-nowrap">비교</p>
+      <p onClick={() => navigate('/home-2')} className="[word-break:break-word] absolute capitalize cursor-pointer font-['Pretendard:Medium'] leading-[normal] left-[calc(50%+69px)] not-italic text-[#7e8b9d] text-[16px] top-[899px] tracking-[-0.16px] whitespace-nowrap">비교</p>
       <div className="absolute h-0 left-[36px] top-[926px] w-[165px]"><div className="absolute inset-[-1px_0_0_0]"><img alt="" className="block max-w-none size-full" src={imgLine187} /></div></div>
       <p className="[word-break:break-word] absolute capitalize font-['Pretendard:Regular'] leading-[normal] left-[calc(50%-59px)] not-italic text-[#728094] text-[16px] top-[1192px] tracking-[-0.16px] whitespace-nowrap">내역별 자세히 보기</p>
 
