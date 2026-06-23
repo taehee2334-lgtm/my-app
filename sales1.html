@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘 매출 얼마?</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:#e0e0e0;
+      display:flex;
+      justify-content:center;
+      padding:20px 0;
+      font-family:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .frame {
+      width:clamp(360px,100%,440px);
+      background:#f4f7f9;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      position:sticky; top:0; z-index:100;
+      background:#fff;
+      height:58px;
+      display:flex; align-items:center;
+      border-bottom:1px solid #e8edf2;
+      padding:0 16px;
+      flex-shrink:0;
+    }
+    .header-back { width:40px; display:flex; align-items:center; }
+    .header-title { flex:1; text-align:center; font-size:18px; font-weight:700; color:#000; }
+    .header-memo { width:60px; text-align:right; font-size:14px; font-weight:400; color:#728094; cursor:pointer; }
+
+    /* ── DATE NAV ── */
+    .date-nav {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      padding:12px 16px;
+    }
+    .date-box {
+      background:#f4f7f9; border-radius:8px;
+      padding:6px 16px;
+      font-size:14px; font-weight:400; color:#3e486b;
+    }
+    .date-arrow-btn {
+      width:33px; height:33px; border-radius:50%; background:#f4f7f9;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; border:none;
+    }
+
+    /* ── CARD ── */
+    .card {
+      margin:0 16px 12px;
+      background:#fff;
+      border:1px solid #e8edf2;
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    /* ── CARD 1: 실시간 매출 ── */
+    .card1-header {
+      display:flex; align-items:center; gap:8px;
+      padding:20px 20px 12px;
+    }
+    .card1-header-icon {
+      width:42px; height:42px; border-radius:10px; background:#e8f5ff;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .card1-header-text { font-size:14px; font-weight:500; color:#3e486b; }
+
+    .sub-boxes {
+      display:flex; gap:8px;
+      padding:0 16px 16px;
+    }
+    .sub-box {
+      flex:1; background:#f9fbfc; border-radius:14px;
+      padding:12px 14px;
+      cursor:pointer; text-decoration:none;
+      display:flex; justify-content:space-between; align-items:flex-start;
+    }
+    .sub-box-left {}
+    .sub-box-label { font-size:14px; font-weight:400; color:#728094; margin-bottom:4px; }
+    .sub-box-amt   { font-size:16px; font-weight:600; color:#000; }
+
+    .breakdown {
+      padding:0 20px 16px;
+    }
+    .breakdown-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:8px 0;
+    }
+    .breakdown-label { font-size:16px; font-weight:400; color:#3e486b; }
+    .breakdown-amt   { font-size:16px; font-weight:500; color:#FF6B2C; }
+    .breakdown-amt.cash  { color:#728094; }
+    .breakdown-amt.other { color:#728094; }
+
+    .divider { height:1px; background:#e8edf2; margin:0 20px; }
+
+    .total-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 20px;
+    }
+    .total-label { font-size:16px; font-weight:600; color:#000; }
+    .total-amt   { font-size:16px; font-weight:600; color:#2d91ff; }
+
+    .btn-detail {
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      padding:14px 20px;
+      cursor:pointer; border:none; background:none; width:100%;
+      font-size:16px; font-weight:500; color:#3e486b;
+      border-top:1px solid #e8edf2;
+      text-decoration:none;
+    }
+    .btn-detail svg { transition:transform 0.2s; }
+    .btn-detail.open svg { transform:rotate(180deg); }
+
+    /* ── CARD 2: 매출현황 ── */
+    .card2-header {
+      display:flex; align-items:center; gap:8px;
+      padding:20px 20px 12px;
+    }
+    .card2-icon {
+      width:42px; height:42px; border-radius:10px; background:#e8f5ff;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .card2-title { font-size:16px; font-weight:600; color:#000; }
+
+    .chart-date-nav {
+      display:flex; align-items:center; gap:8px;
+      padding:0 20px 8px;
+    }
+    .chart-date-txt { font-size:14px; font-weight:300; color:#728094; }
+
+    .chart-amt { padding:0 20px 4px; font-size:22px; font-weight:700; color:#000; }
+    .chart-compare { padding:0 20px 14px; font-size:14px; font-weight:400; color:#2d91ff; }
+
+    .chart-tabs {
+      display:flex; gap:8px;
+      padding:0 20px 16px;
+    }
+    .chart-tab {
+      padding:5px 14px;
+      border-radius:20px; border:1px solid #e8edf2;
+      font-size:14px; font-weight:400; color:#728094;
+      cursor:pointer; background:#fff;
+    }
+    .chart-tab.active {
+      border-color:#2d91ff;
+      color:#2d91ff;
+      font-weight:600;
+    }
+
+    .chart-area {
+      padding:0 16px 20px;
+      height:180px; position:relative;
+    }
+    .chart-svg { width:100%; height:100%; }
+
+    /* ── BOTTOM PADDING ── */
+    .bottom-pad { height:40px; }
+  </style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a href="home.html" class="header-back">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+    </a>
+    <div class="header-title">오늘 매출 얼마?</div>
+    <div class="header-memo">메모 입력</div>
+  </div>
+
+  <!-- DATE NAV -->
+  <div class="date-nav">
+    <button class="date-arrow-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <div class="date-box">26년 5월 6일</div>
+    <button class="date-arrow-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+  </div>
+
+  <!-- CARD 1: 실시간 매출 -->
+  <div class="card">
+    <div class="card1-header">
+      <div class="card1-icon" style="width:42px;height:42px;border-radius:10px;background:#e8f5ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg viewBox="0 0 24 24" style="width:22px;height:22px;" fill="#2d91ff">
+          <path d="M19 7c0-1.1-.9-2-2-2h-3v2h3v2.65L13.52 14H10V9H6c-2.21 0-4 1.79-4 4v3h2c0 1.66 1.34 3 3 3s3-1.34 3-3h4.48L19 10.35V7z"/>
+          <path d="M5 6h5V4H5zM19 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+      </div>
+      <span class="card1-header-text">오늘 5월 6일 실시간 매출</span>
+    </div>
+
+    <div class="sub-boxes">
+      <div class="sub-box" style="text-decoration:none; color:inherit;">
+        <div class="sub-box-left">
+          <div class="sub-box-label">포스 매출</div>
+          <div class="sub-box-amt">920,340원</div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094" style="margin-top:4px;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </div>
+      <a href="sales5.html" class="sub-box">
+        <div class="sub-box-left">
+          <div class="sub-box-label">배달 매출</div>
+          <div class="sub-box-amt">491,500원</div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094" style="margin-top:4px;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+    <div class="breakdown">
+      <div class="breakdown-row">
+        <span class="breakdown-label">카드</span>
+        <span class="breakdown-amt">825,340원</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="breakdown-label">현금</span>
+        <span class="breakdown-amt cash">80,000원</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="breakdown-label">배달앱</span>
+        <span class="breakdown-amt">491,500원</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="breakdown-label">그 외</span>
+        <span class="breakdown-amt other">15,000원</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="total-row">
+      <span class="total-label">총매출 (52건)</span>
+      <span class="total-amt">1,411,840원</span>
+    </div>
+    <div class="divider"></div>
+    <a href="sales4.html" class="btn-detail" id="detailBtn">
+      건수 별로 보기
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M7 10l5 5 5-5z"/></svg>
+    </a>
+  </div>
+
+  <!-- CARD 2: 매출현황 -->
+  <div class="card">
+    <div class="card2-header">
+      <div class="card2-icon" style="width:42px;height:42px;border-radius:10px;background:#e8f5ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg viewBox="0 0 24 24" style="width:22px;height:22px;" fill="#2d91ff">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/>
+        </svg>
+      </div>
+      <span class="card2-title">매출현황</span>
+    </div>
+
+    <div class="chart-date-nav">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      <span class="chart-date-txt">5월 6일 오늘</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </div>
+    <div class="chart-amt">1,411,840원</div>
+    <div class="chart-compare">지난주 이 시간보다 +47,500원</div>
+
+    <div class="chart-tabs">
+      <button class="chart-tab active" onclick="switchTab(this,'daily')">일간</button>
+      <button class="chart-tab" onclick="switchTab(this,'monthly')">월간</button>
+      <button class="chart-tab" onclick="switchTab(this,'yearly')">연간</button>
+    </div>
+
+    <!-- 일간 차트 -->
+    <div class="chart-area" id="chart-daily">
+      <svg class="chart-svg" viewBox="0 0 340 160" preserveAspectRatio="xMidYMid meet">
+        <!-- Grid lines -->
+        <line x1="0" y1="140" x2="340" y2="140" stroke="#e8edf2" stroke-width="1"/>
+        <!-- Line path -->
+        <polyline points="50,110 100,95 150,115 200,35 250,50 300,55"
+          fill="none" stroke="#2d91ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Dots -->
+        <circle cx="50"  cy="110" r="5" fill="#2d91ff"/>
+        <circle cx="100" cy="95"  r="5" fill="#2d91ff"/>
+        <circle cx="150" cy="115" r="5" fill="#2d91ff"/>
+        <circle cx="200" cy="35"  r="6" fill="#2d91ff" stroke="#fff" stroke-width="2"/>
+        <!-- 예측 구간 (dashed) -->
+        <line x1="200" y1="35" x2="250" y2="50" stroke="#2d91ff" stroke-width="2" stroke-dasharray="5,4"/>
+        <line x1="250" y1="50" x2="300" y2="55" stroke="#2d91ff" stroke-width="2" stroke-dasharray="5,4"/>
+        <circle cx="250" cy="50"  r="4" fill="#c0d8ff" stroke="#2d91ff" stroke-width="1.5"/>
+        <circle cx="300" cy="55"  r="4" fill="#c0d8ff" stroke="#2d91ff" stroke-width="1.5"/>
+        <!-- 예측 label -->
+        <rect x="238" y="28" width="32" height="16" rx="4" fill="#2d91ff"/>
+        <text x="254" y="39" text-anchor="middle" fill="white" font-size="10" font-family="Pretendard,sans-serif">예측</text>
+        <!-- Amount labels -->
+        <text x="50"  y="103" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">79만</text>
+        <text x="100" y="88"  text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">82만</text>
+        <text x="150" y="108" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">68만</text>
+        <text x="200" y="28"  text-anchor="middle" fill="#000" font-size="11" font-weight="600" font-family="Pretendard,sans-serif">140만</text>
+        <!-- Date labels -->
+        <text x="50"  y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">3일</text>
+        <text x="100" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">4일</text>
+        <text x="150" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">5일</text>
+        <text x="200" y="155" text-anchor="middle" fill="#2d91ff" font-size="11" font-weight="600" font-family="Pretendard,sans-serif">6일</text>
+        <text x="250" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">7일</text>
+        <text x="300" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">8일</text>
+      </svg>
+    </div>
+
+    <!-- 월간 차트 -->
+    <div class="chart-area" id="chart-monthly" style="display:none;">
+      <svg class="chart-svg" viewBox="0 0 340 160" preserveAspectRatio="xMidYMid meet">
+        <line x1="0" y1="140" x2="340" y2="140" stroke="#e8edf2" stroke-width="1"/>
+        <!-- Bars -->
+        <rect x="45"  y="100" width="16" height="40" rx="3" fill="#c0d8ff"/>
+        <rect x="95"  y="80"  width="16" height="60" rx="3" fill="#c0d8ff"/>
+        <rect x="145" y="55"  width="16" height="85" rx="3" fill="#c0d8ff"/>
+        <rect x="195" y="65"  width="16" height="75" rx="3" fill="#c0d8ff"/>
+        <!-- 5월 현재 + 예측 -->
+        <rect x="245" y="45"  width="16" height="60" rx="3" fill="#2d91ff"/>
+        <rect x="245" y="25"  width="16" height="20" rx="3" fill="#c0d8ff" opacity="0.6"/>
+        <rect x="295" y="30"  width="16" height="110" rx="3" fill="#c0d8ff"/>
+        <!-- 예측 label -->
+        <rect x="248" y="10" width="32" height="16" rx="4" fill="#2d91ff"/>
+        <text x="264" y="21" text-anchor="middle" fill="white" font-size="10" font-family="Pretendard,sans-serif">예측</text>
+        <!-- AI분석 -->
+        <text x="316" y="22" fill="#2d91ff" font-size="10" font-family="Pretendard,sans-serif">AI 분석</text>
+        <!-- Month labels -->
+        <text x="53"  y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">1월</text>
+        <text x="103" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">2월</text>
+        <text x="153" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">3월</text>
+        <text x="203" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">4월</text>
+        <text x="253" y="155" text-anchor="middle" fill="#2d91ff" font-size="11" font-weight="600" font-family="Pretendard,sans-serif">5월</text>
+        <text x="303" y="155" text-anchor="middle" fill="#728094" font-size="11" font-family="Pretendard,sans-serif">6월</text>
+      </svg>
+    </div>
+
+    <!-- 연간 차트 -->
+    <div class="chart-area" id="chart-yearly" style="display:none;">
+      <svg class="chart-svg" viewBox="0 0 340 160" preserveAspectRatio="xMidYMid meet">
+        <line x1="0" y1="140" x2="340" y2="140" stroke="#e8edf2" stroke-width="1"/>
+        <rect x="30"  y="100" width="20" height="40"  rx="3" fill="#c0d8ff"/>
+        <rect x="85"  y="80"  width="20" height="60"  rx="3" fill="#c0d8ff"/>
+        <rect x="140" y="55"  width="20" height="85"  rx="3" fill="#c0d8ff"/>
+        <rect x="195" y="70"  width="20" height="70"  rx="3" fill="#c0d8ff"/>
+        <!-- 2026 현재+예측 -->
+        <rect x="250" y="50"  width="20" height="55"  rx="3" fill="#2d91ff"/>
+        <rect x="250" y="30"  width="20" height="20"  rx="3" fill="#c0d8ff" opacity="0.6"/>
+        <!-- 2027 예측 -->
+        <rect x="305" y="40"  width="20" height="100" rx="3" fill="#c0d8ff"/>
+        <!-- 예측 label -->
+        <rect x="250" y="12" width="32" height="16" rx="4" fill="#2d91ff"/>
+        <text x="266" y="23" text-anchor="middle" fill="white" font-size="10" font-family="Pretendard,sans-serif">예측</text>
+        <text x="320" y="30" fill="#2d91ff" font-size="10" font-family="Pretendard,sans-serif">AI 분석</text>
+        <!-- Year labels -->
+        <text x="40"  y="155" text-anchor="middle" fill="#728094" font-size="10" font-family="Pretendard,sans-serif">2022</text>
+        <text x="95"  y="155" text-anchor="middle" fill="#728094" font-size="10" font-family="Pretendard,sans-serif">2023</text>
+        <text x="150" y="155" text-anchor="middle" fill="#728094" font-size="10" font-family="Pretendard,sans-serif">2024</text>
+        <text x="205" y="155" text-anchor="middle" fill="#728094" font-size="10" font-family="Pretendard,sans-serif">2025</text>
+        <text x="260" y="155" text-anchor="middle" fill="#2d91ff" font-size="10" font-weight="600" font-family="Pretendard,sans-serif">2026</text>
+        <text x="315" y="155" text-anchor="middle" fill="#728094" font-size="10" font-family="Pretendard,sans-serif">2027</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="bottom-pad"></div>
+</div>
+
+<script>
+function switchTab(el, type) {
+  document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['daily','monthly','yearly'].forEach(id => {
+    document.getElementById('chart-' + id).style.display = (id === type) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

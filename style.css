@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+  background: #ffffff;
+  color: #000000;
+}
+
+/* 1920×1080 캔버스: X:370, Y:190 오프셋 */
+.page {
+  width: 1920px;
+  min-height: 1080px;
+  background: #ffffff;
+  padding-top: 190px;
+  padding-left: 370px;
+}
+
+/* category 컨테이너: W:1180, 수직 오토레이아웃, gap:23 */
+.category {
+  width: 1180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 23px;
+}
+
+/* "NEW IN" 레이블: Pretendard Regular 16px */
+.section-title {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+}
+
+/* 4개 카드 가로 배열: W:1180, gap:20 */
+.product-row {
+  width: 1180px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+/* 개별 카드: W:280 고정, 수직 오토레이아웃, gap:20 */
+.item {
+  flex: 0 0 280px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 이미지 영역: W:280, H:373px 고정 */
+.item-image {
+  width: 280px;
+  height: 373px;
+  background-color: #d9d9d9;
+  overflow: hidden;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 텍스트 영역: 수직 오토레이아웃, gap:8 */
+.item-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 상품명: Pretendard Medium 16px */
+.item-name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #000000;
+}
+
+/* 가격: Pretendard Regular 16px */
+.item-price {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+}
+
+/* 더보기 버튼: W:130, H:53, border 1px #000 */
+.more-btn {
+  width: 130px;
+  height: 53px;
+  background: transparent;
+  border: 1px solid #000000;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000;
+  cursor: pointer;
+  letter-spacing: 0;
+}
+
+.more-btn:hover {
+  background: #f5f5f5;
+}

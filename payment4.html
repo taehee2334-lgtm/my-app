@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 통장에 쏙 — 입금대기건</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:#f4f7f9;
+      display:flex; justify-content:center;
+      font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    .frame {
+      width:clamp(360px,100%,440px);
+      min-height:100vh;
+      background:#f4f7f9;
+      display:flex; flex-direction:column;
+      padding-bottom:32px;
+    }
+
+    /* HEADER */
+    .header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+    }
+    .header-back {
+      width:32px; height:32px;
+      display:flex; align-items:center; justify-content:center;
+      text-decoration:none;
+    }
+    .header-back svg { width:20px; height:20px; stroke:#000; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .header-title { font-size:18px; font-weight:600; color:#000; }
+    .header-memo  { font-size:14px; color:#2d91ff; cursor:pointer; }
+
+    /* DATE NAV */
+    .date-nav {
+      display:flex; align-items:center; justify-content:center;
+      gap:12px; padding:0 16px 16px;
+    }
+    .date-arrow { width:24px; height:24px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .date-arrow svg { width:16px; height:16px; fill:none; stroke:#728094; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .date-box {
+      display:flex; align-items:center; gap:6px;
+      background:#fff; border:1px solid #e8edf2; border-radius:8px; padding:6px 14px;
+    }
+    .date-box span { font-size:14px; font-weight:500; color:#000; }
+    .date-box svg  { width:16px; height:16px; fill:none; stroke:#728094; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* CARD */
+    .card { background:#fff; border:1px solid #e8edf2; border-radius:20px; margin:0 16px 12px; padding:20px; }
+
+    /* SUMMARY */
+    .today-label { font-size:12px; color:#728094; margin-bottom:4px; }
+    .today-title { font-size:18px; font-weight:600; color:#000; margin-bottom:20px; }
+    .amount-row  { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .amount-label { font-size:14px; color:#728094; }
+    .amount-value { font-size:14px; color:#000; }
+    .divider { height:1px; background:#e8edf2; margin:14px 0; }
+    .total-row  { display:flex; justify-content:space-between; align-items:center; }
+    .total-label { font-size:16px; font-weight:600; color:#000; }
+    .total-value { font-size:18px; font-weight:700; color:#2d91ff; }
+
+    /* 입금 캘린더 버튼 */
+    .cal-btn {
+      display:flex; align-items:center; justify-content:center; gap:4px;
+      margin-top:20px; padding-top:16px; border-top:1px solid #e8edf2;
+      font-size:14px; font-weight:500; color:#2d91ff;
+      text-decoration:none;
+    }
+    .cal-btn svg { width:16px; height:16px; fill:none; stroke:#2d91ff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* 건별내역 카드 헤더 */
+    .card2-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+    .card2-title { font-size:16px; font-weight:600; color:#000; }
+    .card2-count { font-size:14px; color:#728094; }
+
+    /* 접기 버튼 */
+    .collapse-btn {
+      display:flex; align-items:center; justify-content:center; gap:4px;
+      padding-bottom:14px; border-bottom:1px solid #e8edf2; margin-bottom:16px;
+      font-size:14px; font-weight:500; color:#2d91ff; text-decoration:none;
+    }
+    .collapse-btn svg { width:16px; height:16px; fill:none; stroke:#2d91ff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transform:rotate(180deg); }
+
+    /* FILTER ROW */
+    .filter-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+    .filter-time {
+      display:flex; align-items:center; gap:4px;
+      font-size:14px; font-weight:500; color:#3e486b;
+      border:1px solid #e8edf2; border-radius:8px; padding:5px 10px; cursor:pointer;
+    }
+    .filter-time svg { width:14px; height:14px; fill:none; stroke:#3e486b; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .filter-waiting {
+      display:flex; align-items:center; gap:5px;
+      font-size:12px; color:#2d91ff; font-weight:600; cursor:pointer; text-decoration:none;
+    }
+    /* 체크된 체크박스 */
+    .checkbox-checked {
+      width:16px; height:16px; border-radius:3px; background:#2d91ff;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .checkbox-checked svg { width:11px; height:11px; fill:none; stroke:#fff; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* CARD TABS */
+    .card-tabs {
+      display:flex; gap:8px; flex-wrap:nowrap;
+      overflow-x:auto; padding-bottom:2px; margin-bottom:16px;
+      scrollbar-width:none;
+    }
+    .card-tabs::-webkit-scrollbar { display:none; }
+    .tab-item {
+      flex-shrink:0;
+      font-size:14px; font-weight:500; color:#728094;
+      padding:5px 14px; border-radius:20px; border:1px solid #e8edf2;
+      cursor:pointer; white-space:nowrap; background:#fff;
+    }
+    .tab-item.active { color:#2d91ff; border-color:#2d91ff; font-weight:600; }
+
+    /* TXN ITEMS */
+    .txn-item { padding:18px 0; border-bottom:1px solid #f0f4f7; }
+    .txn-item:last-child { border-bottom:none; }
+
+    .txn-meta { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+    .txn-date { font-size:13px; color:#728094; min-width:28px; }
+    .txn-time { font-size:14px; font-weight:600; color:#000; }
+    .card-dot { width:20px; height:20px; border-radius:50%; flex-shrink:0; }
+    .txn-card-name { font-size:14px; font-weight:600; color:#000; }
+
+    .txn-body { padding-left:38px; }
+    .txn-row  { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
+    .txn-label { font-size:13px; color:#728094; }
+    .txn-val   { font-size:13px; color:#000; }
+    .txn-fee-note { font-size:11px; color:#a0aab8; margin-left:4px; }
+
+    .txn-amount-row {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-top:8px; margin-bottom:8px;
+    }
+    .txn-status-label { font-size:14px; font-weight:600; color:#000; }
+    .txn-amount { font-size:14px; font-weight:600; }
+    .status-waiting { color:#ff8c00; }
+
+    .timer-row { display:flex; align-items:center; gap:5px; margin-bottom:6px; }
+    .timer-row svg { width:14px; height:14px; fill:none; stroke:#728094; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .timer-text { font-size:12px; color:#728094; }
+
+    .badge-miss {
+      display:inline-flex; align-items:center; gap:4px;
+      background:#fff3e0; border-radius:20px;
+      padding:4px 10px; font-size:12px; font-weight:600; color:#ff8c00;
+    }
+
+    .action-row { display:flex; align-items:center; gap:8px; margin-top:8px; }
+    .btn-check {
+      flex:1; background:#2d91ff; border-radius:8px;
+      padding:8px 0; text-align:center;
+      font-size:13px; font-weight:600; color:#fff; cursor:pointer;
+    }
+    .btn-status {
+      flex:1; background:#fff; border:1px solid #2d91ff; border-radius:8px;
+      padding:8px 0; text-align:center;
+      font-size:13px; font-weight:600; color:#2d91ff;
+      display:flex; align-items:center; justify-content:center; gap:4px;
+      cursor:pointer;
+    }
+    .btn-status svg { width:12px; height:12px; fill:none; stroke:#2d91ff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="header-back" href="settlement.html">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+    <span class="header-title">내 통장에 쏙</span>
+    <span class="header-memo">메모 입력</span>
+  </div>
+
+  <!-- DATE NAV -->
+  <div class="date-nav">
+    <div class="date-arrow">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div class="date-box">
+      <span>5월 6일</span>
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+    </div>
+    <div class="date-arrow" style="transform:rotate(180deg);">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+  </div>
+
+  <!-- 카드 1: 입금 상세 -->
+  <div class="card">
+    <p class="today-label">Today</p>
+    <p class="today-title">오늘 5월 6일 입금 상세</p>
+
+    <div class="amount-row">
+      <span class="amount-label">카드 매출액</span>
+      <span class="amount-value">2,903,930원</span>
+    </div>
+    <div class="amount-row">
+      <span class="amount-label">차감 수수료</span>
+      <span class="amount-value">-9,430원</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="total-row">
+      <span class="total-label">실제 입금액</span>
+      <span class="total-value">2,894,500원</span>
+    </div>
+
+    <!-- 입금 캘린더 → payment2 -->
+    <a href="payment2.html" class="cal-btn">
+      입금 캘린더
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
+  </div>
+
+  <!-- 카드 2: 입금 건별 내역 (대기건만 필터링) -->
+  <div class="card">
+    <div class="card2-top">
+      <span class="card2-title">입금 건별 내역</span>
+      <span class="card2-count">총 72건</span>
+    </div>
+
+    <!-- 접기 → payment3 -->
+    <a href="payment3.html" class="collapse-btn">
+      접기
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
+
+    <!-- 필터 행 — "입금대기건 모아보기" 체크됨 -->
+    <div class="filter-row">
+      <div class="filter-time">
+        시간대
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <!-- 체크됨 상태 (payment3으로 돌아가면 unchecked) -->
+      <a href="payment3.html" class="filter-waiting">
+        <div class="checkbox-checked">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        입금대기건 모아보기
+      </a>
+    </div>
+
+    <!-- 카드사 탭 -->
+    <div class="card-tabs">
+      <div class="tab-item active">전체</div>
+      <div class="tab-item">국민</div>
+      <div class="tab-item">롯데</div>
+      <div class="tab-item">비씨</div>
+      <div class="tab-item">신한</div>
+      <div class="tab-item">삼성</div>
+      <div class="tab-item">농협</div>
+      <div class="tab-item">우리</div>
+      <div class="tab-item">하나</div>
+      <div class="tab-item">기타</div>
+    </div>
+
+    <!-- ① 5/2 14:38 삼성카드 — 입금대기 / 누락의심 -->
+    <div class="txn-item">
+      <div class="txn-meta">
+        <span class="txn-date">5/2</span>
+        <span class="txn-time">14:38</span>
+        <div class="card-dot" style="background:#1428a0;"></div>
+        <span class="txn-card-name">삼성카드</span>
+      </div>
+      <div class="txn-body">
+        <div class="txn-row">
+          <span class="txn-label">고객결제액</span>
+          <span class="txn-val">120,000원</span>
+        </div>
+        <div class="txn-row">
+          <span class="txn-label">차감수수료</span>
+          <span class="txn-val">-1,800원<span class="txn-fee-note">(법인 1.50%)</span></span>
+        </div>
+        <div class="txn-amount-row">
+          <span class="txn-status-label">입금대기</span>
+          <span class="txn-amount status-waiting">118,200원</span>
+        </div>
+        <div class="timer-row">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <polyline points="12 7 12 12 15 15"/>
+          </svg>
+          <span class="timer-text">대기중 (1일 초과)</span>
+        </div>
+        <span class="badge-miss">⚠ 누락의심!</span>
+        <div class="action-row">
+          <div class="btn-check">자동 검사 시작</div>
+          <div class="btn-status">
+            현황 보기
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 5/2 19:26 신한카드 — 입금대기 / 누락의심 -->
+    <div class="txn-item">
+      <div class="txn-meta">
+        <span class="txn-date">5/2</span>
+        <span class="txn-time">19:26</span>
+        <div class="card-dot" style="background:#0054a6;"></div>
+        <span class="txn-card-name">신한카드</span>
+      </div>
+      <div class="txn-body">
+        <div class="txn-row">
+          <span class="txn-label">고객결제액</span>
+          <span class="txn-val">4,500원</span>
+        </div>
+        <div class="txn-row">
+          <span class="txn-label">차감수수료</span>
+          <span class="txn-val">-6원<span class="txn-fee-note">(체크 0.15%)</span></span>
+        </div>
+        <div class="txn-amount-row">
+          <span class="txn-status-label">입금대기</span>
+          <span class="txn-amount status-waiting">4,494원</span>
+        </div>
+        <div class="timer-row">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <polyline points="12 7 12 12 15 15"/>
+          </svg>
+          <span class="timer-text">대기중 (1일 초과)</span>
+        </div>
+        <span class="badge-miss">⚠ 누락의심!</span>
+        <div class="action-row">
+          <div class="btn-check">자동 검사 시작</div>
+          <div class="btn-status">
+            현황 보기
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .card -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 가게 홈화면</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* 프레임: 360~440px 반응형, 수평값 전부 % */
+    .frame {
+      position: relative;
+      width: clamp(360px, 100%, 440px);
+      height: 1325px;
+      background: #f4f7f9;
+      overflow: hidden;
+    }
+
+    svg { display: block; }
+    p   { line-height: normal; }
+
+    /* ── 기준 너비 402px 기준으로 % 산출 ── */
+
+    /* TOP NAV */
+    .nav-title     { position:absolute; left:3.98%;  top:12px; }
+    .nav-dropdown  { position:absolute; left:16.67%; top:12px; width:5.97%; height:24px; }
+    .nav-atm       { position:absolute; left:63.18%; top:12px; width:5.97%; height:24px; }
+    .nav-bell      { position:absolute; left:75.12%; top:12px; width:5.97%; height:24px; }
+    .nav-menu      { position:absolute; left:87.06%; top:12px; width:5.97%; height:24px; }
+
+    /* SEARCH BAR */
+    .search-bar    {
+      position:absolute; left:5.47%; top:72px;
+      width:89.30%; height:48px;
+      border-radius:24px;
+      background: linear-gradient(white,white) padding-box,
+                  linear-gradient(90deg,#4090FF,#00D4FF) border-box;
+      border:2px solid transparent;
+    }
+    .search-text   { position:absolute; left:10.20%; top:88px; }
+    .search-circle { position:absolute; left:84.08%; top:83px; width:6.47%; height:26px; }
+    .search-arrow  { position:absolute; left:84.83%; top:86px; width:4.98%; height:20px; }
+
+    /* CARDS (outer box) */
+    .card-1 { position:absolute; left:5.47%; top:129px; width:89.30%; height:261px; background:white; border:1px solid #e8edf2; border-radius:20px; }
+    .card-2 { position:absolute; left:5.22%; top:402px; width:89.30%; height:417px; background:white; border:1px solid #e8edf2; border-radius:20px; }
+    .card-3 { position:absolute; left:5.97%; top:827px; width:89.30%; height:406px; background:white; border:1px solid #e8edf2; border-radius:20px; }
+
+    /* CARD 1 */
+    .c1-title   { position:absolute; left:10.70%;  top:153px; }
+    .subbox-l   { position:absolute; left:10.70%;  top:187px; width:38.06%; height:115px; background:#f9fbfc; border-radius:20px; }
+    .subbox-r   { position:absolute; left:51.24%;  top:187px; width:38.06%; height:115px; background:#f9fbfc; border-radius:20px; }
+    .divider-v  { position:absolute; left:49.75%;  top:205px; width:0.25%; height:43px; background:#e8edf2; }
+    .c1-icon-l  { position:absolute; left:13.18%;  top:202px; width:30px; height:30px; border-radius:8px; background:#fff2e8; display:flex; align-items:center; justify-content:center; }
+    .c1-lbl-l1  { position:absolute; left:13.68%;  top:236px; }
+    .c1-amt-l   { position:absolute; left:13.68%;  top:256px; }
+    .c1-icon-r  { position:absolute; left:54.23%;  top:202px; width:30px; height:30px; border-radius:8px; background:#e8f5ff; display:flex; align-items:center; justify-content:center; }
+    .c1-lbl-r1  { position:absolute; left:54.23%;  top:236px; }
+    .c1-amt-r   { position:absolute; left:54.23%;  top:256px; }
+    .btn-outline { position:absolute; left:17.16%; top:320px; width:66.17%; height:48px; background:white; border:1px solid #2d91ff; border-radius:24px; }
+    .btn-outline-txt { position:absolute; left:33.58%; top:334px; }
+
+    /* CARD 2 */
+    .c2-title   { position:absolute; left:10.95%; top:425px; }
+    .date-bg    { position:absolute; left:37.81%; top:461px; width:25.62%; height:33px; background:#f4f7f9; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+    .date-arrow-l { position:absolute; left:28.36%; top:466px; width:5.97%; height:24px; }
+    .date-arrow-r { position:absolute; left:66.92%; top:466px; width:5.97%; height:24px; }
+    /* 입금 */
+    .r1-icon    { position:absolute; left:13.68%; top:515px; width:5.97%; height:24px; }
+    .r1-label   { position:absolute; left:22.39%; top:517px; }
+    .r1-amt     { position:absolute; left:61.94%; top:517px; }
+    /* 수수료 */
+    .r2-icon    { position:absolute; left:13.68%; top:563px; width:5.97%; height:24px; }
+    .r2-remove  { position:absolute; left:14.18%; top:565px; width:4.98%; height:20px; }
+    .r2-label   { position:absolute; left:22.39%; top:565px; }
+    .r2-amt     { position:absolute; left:68.41%; top:565px; }
+    /* 총합계 */
+    .r3-circle  { position:absolute; left:13.68%; top:609px; width:5.97%; height:24px; }
+    .r3-check   { position:absolute; left:14.18%; top:611px; width:4.98%; height:20px; }
+    .r3-label   { position:absolute; left:22.39%; top:611px; }
+    .r3-amt     { position:absolute; left:62.19%; top:611px; }
+    .btn-solid  { position:absolute; left:17.16%; top:654px; width:66.17%; height:48px; background:#2d91ff; border:1px solid #2d91ff; border-radius:24px; }
+    .btn-solid-txt { position:absolute; left:39.05%; top:668px; }
+    .sep-c2     { position:absolute; left:9.20%;  top:713px; width:82.84%; height:1px; background:#e8edf2; }
+    .c2-desc    { position:absolute; left:11.44%; top:728px; }
+    .c2-link    { position:absolute; left:51.99%; top:780px; }
+    .c2-arrow   { position:absolute; left:85.82%; top:780px; width:4.98%; height:20px; }
+
+    /* CARD 3 */
+    .c3-title   { position:absolute; left:10.95%; top:849px; }
+    .tab-jichul { position:absolute; left:26.12%; top:899px; }
+    .tab-bigyo  { position:absolute; left:67.16%; top:899px; }
+    .sep-full   { position:absolute; left:8.96%;  top:926px; width:82.84%; height:1px; background:#e8edf2; }
+    .tab-active { position:absolute; left:8.96%;  top:925px; width:41.04%; height:2px; background:#2d91ff; }
+    .month-l    { position:absolute; left:8.96%;  top:940px; width:5.97%; height:24px; }
+    .month-txt  { position:absolute; left:16.42%; top:943px; }
+    .month-r    { position:absolute; left:23.13%; top:940px; width:5.97%; height:24px; }
+    .month-amt  { position:absolute; left:13.18%; top:972px; }
+    /* 고정비 */
+    .g1-icon    { position:absolute; left:7.96%;  top:1016px; width:42px; height:42px; border-radius:12px; background:#f0eeff; display:flex; align-items:center; justify-content:center; }
+    .g1-lbl     { position:absolute; left:19.65%; top:1018px; }
+    .g1-amt     { position:absolute; left:19.65%; top:1037px; }
+    .g1-arr     { position:absolute; left:72.39%; top:1027px; width:4.98%; height:20px; }
+    /* 변동비 */
+    .g2-icon    { position:absolute; left:7.96%;  top:1064px; width:42px; height:42px; border-radius:12px; background:#fff3e0; display:flex; align-items:center; justify-content:center; }
+    .g2-lbl     { position:absolute; left:19.90%; top:1066px; }
+    .g2-amt     { position:absolute; left:19.90%; top:1085px; }
+    .g2-arr     { position:absolute; left:72.39%; top:1075px; width:4.98%; height:20px; }
+    /* 기타 */
+    .g3-icon    { position:absolute; left:8.21%;  top:1112px; width:42px; height:42px; border-radius:12px; background:#e8f5e9; display:flex; align-items:center; justify-content:center; }
+    .g3-lbl     { position:absolute; left:20.15%; top:1114px; }
+    .g3-amt     { position:absolute; left:20.15%; top:1133px; }
+    .g3-arr     { position:absolute; left:72.39%; top:1123px; width:4.98%; height:20px; }
+    .sep-c3     { position:absolute; left:9.20%;  top:1174px; width:82.84%; height:1px; background:#e8edf2; }
+    .c3-link    { position:absolute; left:35.32%; top:1192px; }
+    .c3-arr     { position:absolute; left:65.42%; top:1192px; width:4.98%; height:20px; }
+
+    /* BOTTOM NAV */
+    .bnav       { position:absolute; left:0; top:1241px; width:100%; height:84px; background:white; border-top:1px solid #f0f0f0; }
+    .bn-home-ic { position:absolute; left:6.47%;  top:1251px; width:6.97%; height:28px; }
+    .bn-home-lb { position:absolute; left:8.71%;  top:1285px; }
+    .bn-pay-ic  { position:absolute; left:26.37%; top:1251px; width:6.97%; height:28px; }
+    .bn-pay-lb  { position:absolute; left:27.11%; top:1285px; }
+    .bn-dis-ic  { position:absolute; left:46.27%; top:1251px; width:6.97%; height:28px; }
+    .bn-dis-lb  { position:absolute; left:47.01%; top:1285px; }
+    .bn-mkt-ic  { position:absolute; left:66.17%; top:1251px; width:6.97%; height:28px; }
+    .bn-mkt-lb  { position:absolute; left:67.16%; top:1285px; }
+    .bn-str-ic  { position:absolute; left:86.07%; top:1251px; width:6.97%; height:28px; }
+    .bn-str-lb  { position:absolute; left:85.57%; top:1285px; }
+  </style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ==============================  TOP NAV  ============================== -->
+  <p class="nav-title" style="font-size:20px; font-weight:600; color:#000; letter-spacing:-0.2px; white-space:nowrap;">내 가게</p>
+  <svg class="nav-dropdown" viewBox="0 0 24 24" fill="#4d5c76"><path d="M7 10l5 5 5-5z"/></svg>
+  <svg class="nav-atm"      viewBox="0 0 24 24" fill="#4d5c76"><path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg>
+  <svg class="nav-bell"     viewBox="0 0 24 24" fill="#4d5c76"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+  <svg class="nav-menu"     viewBox="0 0 24 24" fill="#4d5c76"><path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z"/></svg>
+
+  <!-- ==============================  SEARCH BAR  ============================== -->
+  <div class="search-bar"></div>
+  <p class="search-text" style="font-size:14px; font-weight:400; color:#4d5c76; letter-spacing:-0.14px; white-space:nowrap;">카드사별 수수료 어떻게 다를까?</p>
+  <svg class="search-circle" viewBox="0 0 26 26">
+    <defs>
+      <linearGradient id="sg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#4090FF"/>
+        <stop offset="100%" stop-color="#00D4FF"/>
+      </linearGradient>
+    </defs>
+    <circle cx="13" cy="13" r="13" fill="url(#sg)"/>
+  </svg>
+  <svg class="search-arrow" viewBox="0 0 24 24" fill="white"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+
+  <!-- ==============================  CARD 1: 오늘 매출 얼마?  ============================== -->
+  <div class="card-1"></div>
+  <p class="c1-title" style="font-size:20px; font-weight:600; color:#000; letter-spacing:-0.2px; white-space:nowrap;">오늘 매출 얼마?</p>
+
+  <div class="subbox-l"></div>
+  <div class="subbox-r"></div>
+  <div class="divider-v"></div>
+
+  <!-- POS 매출 -->
+  <div class="c1-icon-l">
+    <svg viewBox="0 0 24 24" style="width:18px;height:18px;" fill="#FF6B2C">
+      <path d="M20 3H4v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V3zm-2 4h-3V5h3v2zm-5 0H9V5h4v2zm-6 0H5V5h2v2zm9 10v2H8v-2H4v4h16v-4h-4z"/>
+    </svg>
+  </div>
+  <p class="c1-lbl-l1" style="font-size:14px; font-weight:500; color:#3e486b; letter-spacing:-0.14px; white-space:nowrap;">오늘 포스 매출</p>
+  <p class="c1-amt-l"  style="font-size:18px; font-weight:600; color:#000; letter-spacing:-0.18px; white-space:nowrap;">920,340원</p>
+
+  <!-- 배달 매출 -->
+  <div class="c1-icon-r">
+    <svg viewBox="0 0 24 24" style="width:18px;height:18px;" fill="#2d91ff">
+      <path d="M19 7c0-1.1-.9-2-2-2h-3v2h3v2.65L13.52 14H10V9H6c-2.21 0-4 1.79-4 4v3h2c0 1.66 1.34 3 3 3s3-1.34 3-3h4.48L19 10.35V7zM7 17c-.55 0-1-.45-1-1h2c0 .55-.45 1-1 1z"/>
+      <path d="M5 6h5V4H5zM19 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+    </svg>
+  </div>
+  <p class="c1-lbl-r1" style="font-size:14px; font-weight:500; color:#3e486b; letter-spacing:-0.14px; white-space:pre;">오늘 배달  매출</p>
+  <p class="c1-amt-r"  style="font-size:18px; font-weight:600; color:#000; letter-spacing:-0.18px; white-space:nowrap;">491,500원</p>
+
+  <!-- 실시간 매출 확인 버튼 -->
+  <div class="btn-outline"></div>
+  <p class="btn-outline-txt" style="font-size:16px; font-weight:600; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap;">실시간 매출 확인하기</p>
+  <a href="sales1.html" class="btn-outline" style="background:transparent; border:none; z-index:10;" aria-label="실시간 매출 확인하기"></a>
+
+  <!-- ==============================  CARD 2: 정산 해요!  ============================== -->
+  <div class="card-2"></div>
+  <p class="c2-title" style="font-size:20px; font-weight:600; color:#000; letter-spacing:-0.2px; white-space:nowrap;">정산 해요!</p>
+
+  <!-- 날짜 선택 -->
+  <div class="date-bg"></div>
+  <svg class="date-arrow-l" viewBox="0 0 24 24" fill="#728094"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+  <svg class="date-arrow-r" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+  <div class="date-bg">
+    <p style="font-size:14px; font-weight:300; color:#728094; letter-spacing:-0.14px; white-space:nowrap;">5월 6일 오늘</p>
+  </div>
+
+  <!-- 입금 -->
+  <svg class="r1-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="12" fill="#e8f4ff"/>
+    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7z" fill="#2d91ff"/>
+  </svg>
+  <p class="r1-label" style="font-size:16px; font-weight:500; color:#000; letter-spacing:-0.16px; white-space:nowrap;">입금</p>
+  <p class="r1-amt"   style="font-size:16px; font-weight:500; color:#000; letter-spacing:-0.16px; white-space:nowrap;">2,903,930원</p>
+
+  <!-- 수수료 -->
+  <svg class="r2-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="12" fill="#f4f6f8"/>
+  </svg>
+  <svg class="r2-remove" viewBox="0 0 24 24" fill="#8b97a7"><path d="M19 13H5v-2h14v2z"/></svg>
+  <p class="r2-label" style="font-size:16px; font-weight:500; color:#000; letter-spacing:-0.16px; white-space:nowrap;">수수료</p>
+  <p class="r2-amt"   style="font-size:16px; font-weight:500; color:#8b97a7; letter-spacing:-0.16px; white-space:nowrap;">-9,430원</p>
+
+  <!-- 총합계 -->
+  <svg class="r3-circle" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="12" fill="#22c55e"/>
+  </svg>
+  <svg class="r3-check" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+  <p class="r3-label" style="font-size:16px; font-weight:500; color:#000; letter-spacing:-0.16px; white-space:nowrap;">총합계</p>
+  <p class="r3-amt"   style="font-size:16px; font-weight:500; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap;">2,894,500원</p>
+
+  <!-- 정산 상세 보기 버튼 -->
+  <div class="btn-solid"></div>
+  <p class="btn-solid-txt" style="font-size:16px; font-weight:600; color:white; letter-spacing:-0.16px; white-space:nowrap;">정산 상세 보기</p>
+  <!-- 투명 클릭 오버레이 -->
+  <a href="settlement.html" class="btn-solid" style="background:transparent; border:none; z-index:10;" aria-label="정산 상세 보기"></a>
+
+  <div class="sep-c2"></div>
+
+  <!-- 미입금 안내 -->
+  <div class="c2-desc">
+    <p style="font-size:14px; font-weight:400; color:#000; letter-spacing:-0.14px; line-height:1.6;">우리가게 매출,</p>
+    <p style="font-size:14px; font-weight:400; color:#000; letter-spacing:-0.14px; line-height:1.6;">문제 없이 입금되고 있을까?</p>
+  </div>
+  <p class="c2-link" style="font-size:16px; font-weight:600; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap;">미입금액 있는지 확인</p>
+  <svg class="c2-arrow" viewBox="0 0 24 24" fill="#2d91ff"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+
+  <!-- ==============================  CARD 3: 가계부  ============================== -->
+  <div class="card-3"></div>
+  <p class="c3-title" style="font-size:20px; font-weight:600; color:#000; letter-spacing:-0.2px; white-space:nowrap;">가계부</p>
+
+  <!-- 탭 -->
+  <p class="tab-jichul" style="font-size:16px; font-weight:500; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap;">지출</p>
+  <p class="tab-bigyo"  style="font-size:16px; font-weight:500; color:#7e8b9d; letter-spacing:-0.16px; white-space:nowrap;">비교</p>
+  <div class="sep-full"></div>
+  <div class="tab-active"></div>
+
+  <!-- 월 선택 -->
+  <svg class="month-l"  viewBox="0 0 24 24" fill="#728094"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+  <p class="month-txt"  style="font-size:14px; font-weight:400; color:#728094; letter-spacing:-0.14px; text-decoration:underline; white-space:nowrap;">5월</p>
+  <svg class="month-r"  viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+  <p class="month-amt"  style="font-size:16px; font-weight:500; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap;">1,903,930원</p>
+
+  <!-- 고정비 -->
+  <div class="g1-icon">
+    <svg viewBox="0 0 24 24" style="width:24px;height:24px;" fill="#7c5cbf">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </div>
+  <p class="g1-lbl" style="font-size:14px; font-weight:300; color:#728094; letter-spacing:-0.14px; white-space:nowrap;">고정비</p>
+  <p class="g1-amt" style="font-size:14px; font-weight:500; color:#000; letter-spacing:-0.14px; white-space:nowrap;">903,930원</p>
+  <svg class="g1-arr" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+
+  <!-- 변동비 -->
+  <div class="g2-icon">
+    <svg viewBox="0 0 24 24" style="width:24px;height:24px;" fill="#FF6B2C">
+      <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+    </svg>
+  </div>
+  <p class="g2-lbl" style="font-size:14px; font-weight:300; color:#728094; letter-spacing:-0.14px; white-space:nowrap;">변동비</p>
+  <p class="g2-amt" style="font-size:14px; font-weight:500; color:#000; letter-spacing:-0.14px; white-space:nowrap;">103,930원</p>
+  <svg class="g2-arr" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+
+  <!-- 기타 -->
+  <div class="g3-icon">
+    <svg viewBox="0 0 24 24" style="width:24px;height:24px;" fill="#4caf50">
+      <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
+    </svg>
+  </div>
+  <p class="g3-lbl" style="font-size:14px; font-weight:300; color:#728094; letter-spacing:-0.14px; white-space:nowrap;">기타</p>
+  <p class="g3-amt" style="font-size:14px; font-weight:500; color:#000; letter-spacing:-0.14px; white-space:nowrap;">896,070원</p>
+  <svg class="g3-arr" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+
+  <div class="sep-c3"></div>
+  <p class="c3-link" style="font-size:16px; font-weight:400; color:#728094; letter-spacing:-0.16px; white-space:nowrap;">내역별 자세히 보기</p>
+  <svg class="c3-arr" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+
+  <!-- ==============================  BOTTOM NAV  ============================== -->
+  <div class="bnav"></div>
+  <svg class="bn-home-ic" viewBox="0 0 24 24" fill="#000"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <p   class="bn-home-lb" style="font-size:12px; font-weight:600; color:#000; white-space:nowrap;">홈</p>
+  <svg class="bn-pay-ic"  viewBox="0 0 24 24" fill="#728094"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+  <p   class="bn-pay-lb"  style="font-size:12px; font-weight:600; color:#728094; white-space:nowrap;">페이</p>
+  <svg class="bn-dis-ic"  viewBox="0 0 24 24" fill="#728094"><path d="M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z"/></svg>
+  <p   class="bn-dis-lb"  style="font-size:12px; font-weight:600; color:#728094; white-space:nowrap;">발견</p>
+  <svg class="bn-mkt-ic"  viewBox="0 0 24 24" fill="#728094"><path d="M17.21 9l-1.98-3.53C14.9 4.56 13.99 4 13 4s-1.9.56-2.23 1.47L8.79 9H5c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h7c.92 0 1.69-.62 1.93-1.46l2.54-9.27L20 10c0-.55-.45-1-1-1h-1.79zM13 6c.34 0 .65.2.8.5L14.96 9H11.04l1.16-2.5c.15-.3.46-.5.8-.5zm-4 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+  <p   class="bn-mkt-lb"  style="font-size:12px; font-weight:600; color:#728094; white-space:nowrap;">마켓</p>
+  <svg class="bn-str-ic"  viewBox="0 0 24 24" fill="#728094"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg>
+  <p   class="bn-str-lb"  style="font-size:12px; font-weight:600; color:#728094; white-space:nowrap;">내매장</p>
+
+</div>
+</body>
+</html>
