@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>통화</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#000; display:flex; justify-content:center; min-height:100vh; }
+    .frame {
+      width:clamp(360px,100%,440px);
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+    }
+    .bg-img {
+      width:100%;
+      height:100%;
+      min-height:100vh;
+      object-fit:cover;
+      display:block;
+    }
+    .back-btn {
+      position:absolute;
+      top:16px;
+      left:16px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:4px;
+      z-index:10;
+      display:flex;
+      align-items:center;
+      gap:4px;
+      color:white;
+      font-size:17px;
+      font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;
+      font-weight:400;
+    }
+  </style>
+</head>
+<body>
+<div class="frame">
+  <img class="bg-img" src="통화.png" alt="통화 화면">
+  <button class="back-btn" onclick="location.href='home.html'">
+    <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+      <path d="M10.5 1.5L1.5 10L10.5 18.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    10:09
+  </button>
+</div>
+</body>
+</html>
