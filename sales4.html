@@ -115,28 +115,49 @@
     }
     .card-tab.active { border-color:#2d91ff; color:#2d91ff; font-weight:600; }
 
-    /* TRANSACTION LIST */
+    /* TRANSACTION LIST — payment3/4와 동일한 구조 */
     .txn-list { overflow-y:auto; }
 
-    .txn-item { padding:16px 20px; border-bottom:1px solid #f0f4f8; position:relative; }
-    .txn-time { font-size:14px; color:#728094; margin-bottom:8px; }
-    .txn-body { display:flex; gap:12px; }
-    .txn-line-col { display:flex; flex-direction:column; align-items:center; gap:0; width:20px; flex-shrink:0; }
-    .txn-dot {
-      width:20px; height:20px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      flex-shrink:0;
+    .txn-item {
+      display:flex; gap:0;
+      padding:16px 20px; border-bottom:1px solid #f0f4f8;
     }
-    .txn-vline { flex:1; width:2px; background:#e8edf2; min-height:60px; }
-    .txn-content { flex:1; }
-    .txn-card-name { font-size:16px; font-weight:600; color:#000; margin-bottom:6px; }
-    .txn-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
-    .txn-row-label { font-size:14px; color:#3e486b; }
-    .txn-row-val { font-size:14px; font-weight:500; color:#000; }
-    .txn-row-val.red { color:#e05252; }
-    .txn-row-val.fee { color:#728094; font-size:12px; }
-    .txn-wait-row { display:flex; align-items:center; gap:4px; margin-bottom:4px; }
-    .txn-wait-label { font-size:14px; color:#728094; }
+    .txn-item:last-child { border-bottom:none; }
+
+    /* 왼쪽: 날짜·시간 */
+    .txn-left {
+      display:flex; flex-direction:column; align-items:flex-end;
+      min-width:38px; padding-top:3px; flex-shrink:0;
+    }
+    .txn-date { font-size:12px; color:#728094; line-height:1.4; }
+    .txn-time { font-size:13px; font-weight:700; color:#000; line-height:1.4; }
+
+    /* 세로 구분선 */
+    .txn-divider { width:1px; background:#e8edf2; margin:0 12px; flex-shrink:0; }
+
+    /* 오른쪽 */
+    .txn-right { flex:1; min-width:0; }
+    .txn-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .card-logo {
+      width:26px; height:26px; border-radius:50%; flex-shrink:0;
+      overflow:hidden; background:#e8edf2;
+    }
+    .card-logo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .txn-card-name { font-size:14px; font-weight:700; color:#000; }
+
+    .txn-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+    .txn-row-label { font-size:13px; color:#728094; }
+    .txn-row-val { font-size:13px; color:#000; }
+    .txn-row-val.red { color:#e53935; }
+    .txn-row-val.fee { font-size:11px; color:#728094; margin-left:3px; }
+
+    .txn-amount-row { display:flex; justify-content:space-between; align-items:center; margin-top:8px; margin-bottom:6px; }
+    .txn-amount-label { font-size:14px; font-weight:700; color:#000; }
+    .txn-amount-val   { font-size:14px; font-weight:700; color:#000; }
+
+    .txn-wait-row { display:flex; align-items:center; gap:5px; margin-bottom:5px; }
+    .txn-wait-row svg { width:13px; height:13px; fill:none; stroke:#728094; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .txn-wait-label { font-size:12px; color:#728094; }
     .txn-tip { font-size:12px; color:#2d91ff; }
 
     .bottom-pad { height:40px; }
@@ -242,165 +263,161 @@
 
       <!-- 신한카드 -->
       <div class="txn-item">
-        <div class="txn-time">14:12</div>
-        <div class="txn-body">
-          <div class="txn-line-col">
-            <div class="txn-dot" style="background:#4285F4;">
-              <span style="font-size:9px; color:#fff; font-weight:700;">신</span>
-            </div>
-            <div class="txn-vline"></div>
+        <div class="txn-left">
+          <span class="txn-date">5/6</span>
+          <span class="txn-time">14:12</span>
+        </div>
+        <div class="txn-divider"></div>
+        <div class="txn-right">
+          <div class="txn-header">
+            <div class="card-logo"><img src="카드사/신한카드.png" alt="신한"></div>
+            <span class="txn-card-name">신한카드</span>
           </div>
-          <div class="txn-content">
-            <div class="txn-card-name">신한카드</div>
-            <div class="txn-row">
-              <span class="txn-row-label">고객결제액</span>
-              <span class="txn-row-val">50,000원</span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">차감수수료</span>
-              <span class="txn-row-val red">-200원 <span class="fee">(신용 0.40%)</span></span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">입금예정</span>
-              <span class="txn-row-val">49,800원</span>
-            </div>
-            <div class="txn-wait-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF9900"><path d="M6 2v6l2 2-2 2v6h12v-6l-2-2 2-2V2H6zm10 14.5V20H8v-3.5l4-4 4 4zM8 9.5V4h8v5.5l-4 4-4-4z"/></svg>
-              <span class="txn-wait-label">대기중 (D-2, 5월 8일)</span>
-            </div>
-            <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
+          <div class="txn-row">
+            <span class="txn-row-label">고객결제액</span>
+            <span class="txn-row-val">50,000원</span>
           </div>
+          <div class="txn-row">
+            <span class="txn-row-label">차감수수료</span>
+            <span class="txn-row-val red">-200원<span class="fee">(신용 0.40%)</span></span>
+          </div>
+          <div class="txn-amount-row">
+            <span class="txn-amount-label">입금예정</span>
+            <span class="txn-amount-val">49,800원</span>
+          </div>
+          <div class="txn-wait-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            <span class="txn-wait-label">대기중 (D-2, 5월 8일)</span>
+          </div>
+          <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
         </div>
       </div>
 
       <!-- 국민카드 -->
       <div class="txn-item">
-        <div class="txn-time">14:25</div>
-        <div class="txn-body">
-          <div class="txn-line-col">
-            <div class="txn-dot" style="background:#FFB800;">
-              <span style="font-size:9px; color:#fff; font-weight:700;">국</span>
-            </div>
-            <div class="txn-vline"></div>
+        <div class="txn-left">
+          <span class="txn-date">5/6</span>
+          <span class="txn-time">14:25</span>
+        </div>
+        <div class="txn-divider"></div>
+        <div class="txn-right">
+          <div class="txn-header">
+            <div class="card-logo"><img src="카드사/국민카드.png" alt="국민"></div>
+            <span class="txn-card-name">국민카드</span>
           </div>
-          <div class="txn-content">
-            <div class="txn-card-name">국민카드</div>
-            <div class="txn-row">
-              <span class="txn-row-label">고객결제액</span>
-              <span class="txn-row-val">12,000원</span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">차감수수료</span>
-              <span class="txn-row-val red">-18원 <span class="fee">(체크 0.15%)</span></span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">입금예정</span>
-              <span class="txn-row-val">11,982원</span>
-            </div>
-            <div class="txn-wait-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF9900"><path d="M6 2v6l2 2-2 2v6h12v-6l-2-2 2-2V2H6zm10 14.5V20H8v-3.5l4-4 4 4zM8 9.5V4h8v5.5l-4 4-4-4z"/></svg>
-              <span class="txn-wait-label">대기중 (D-2, 5월 8일)</span>
-            </div>
-            <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
+          <div class="txn-row">
+            <span class="txn-row-label">고객결제액</span>
+            <span class="txn-row-val">12,000원</span>
           </div>
+          <div class="txn-row">
+            <span class="txn-row-label">차감수수료</span>
+            <span class="txn-row-val red">-18원<span class="fee">(체크 0.15%)</span></span>
+          </div>
+          <div class="txn-amount-row">
+            <span class="txn-amount-label">입금예정</span>
+            <span class="txn-amount-val">11,982원</span>
+          </div>
+          <div class="txn-wait-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            <span class="txn-wait-label">대기중 (D-2, 5월 8일)</span>
+          </div>
+          <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
         </div>
       </div>
 
       <!-- 삼성카드 -->
       <div class="txn-item">
-        <div class="txn-time">14:38</div>
-        <div class="txn-body">
-          <div class="txn-line-col">
-            <div class="txn-dot" style="background:#1A1A1A;">
-              <span style="font-size:9px; color:#fff; font-weight:700;">삼</span>
-            </div>
-            <div class="txn-vline"></div>
+        <div class="txn-left">
+          <span class="txn-date">5/6</span>
+          <span class="txn-time">14:38</span>
+        </div>
+        <div class="txn-divider"></div>
+        <div class="txn-right">
+          <div class="txn-header">
+            <div class="card-logo"><img src="카드사/삼성카드.png" alt="삼성"></div>
+            <span class="txn-card-name">삼성카드</span>
           </div>
-          <div class="txn-content">
-            <div class="txn-card-name">삼성카드</div>
-            <div class="txn-row">
-              <span class="txn-row-label">고객결제액</span>
-              <span class="txn-row-val">120,000원</span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">차감수수료</span>
-              <span class="txn-row-val red">-1,800원 <span class="fee">(법인 1.50%)</span></span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">입금예정</span>
-              <span class="txn-row-val">118,200원</span>
-            </div>
-            <div class="txn-wait-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF9900"><path d="M6 2v6l2 2-2 2v6h12v-6l-2-2 2-2V2H6zm10 14.5V20H8v-3.5l4-4 4 4zM8 9.5V4h8v5.5l-4 4-4-4z"/></svg>
-              <span class="txn-wait-label">대기중 (D-3, 5월 9일)</span>
-            </div>
-            <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
+          <div class="txn-row">
+            <span class="txn-row-label">고객결제액</span>
+            <span class="txn-row-val">120,000원</span>
           </div>
+          <div class="txn-row">
+            <span class="txn-row-label">차감수수료</span>
+            <span class="txn-row-val red">-1,800원<span class="fee">(법인 1.50%)</span></span>
+          </div>
+          <div class="txn-amount-row">
+            <span class="txn-amount-label">입금예정</span>
+            <span class="txn-amount-val">118,200원</span>
+          </div>
+          <div class="txn-wait-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            <span class="txn-wait-label">대기중 (D-3, 5월 9일)</span>
+          </div>
+          <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
         </div>
       </div>
 
       <!-- 현대카드 -->
       <div class="txn-item">
-        <div class="txn-time">14:45</div>
-        <div class="txn-body">
-          <div class="txn-line-col">
-            <div class="txn-dot" style="background:#333;">
-              <span style="font-size:9px; color:#fff; font-weight:700;">현</span>
-            </div>
-            <div class="txn-vline"></div>
+        <div class="txn-left">
+          <span class="txn-date">5/6</span>
+          <span class="txn-time">14:45</span>
+        </div>
+        <div class="txn-divider"></div>
+        <div class="txn-right">
+          <div class="txn-header">
+            <div class="card-logo"><img src="카드사/현대카드.png" alt="현대"></div>
+            <span class="txn-card-name">현대카드</span>
           </div>
-          <div class="txn-content">
-            <div class="txn-card-name">현대카드</div>
-            <div class="txn-row">
-              <span class="txn-row-label">고객결제액</span>
-              <span class="txn-row-val">8,500원</span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">차감수수료</span>
-              <span class="txn-row-val red">-34원 <span class="fee">(신용 0.40%)</span></span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">입금예정</span>
-              <span class="txn-row-val">8,466원</span>
-            </div>
-            <div class="txn-wait-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF9900"><path d="M6 2v6l2 2-2 2v6h12v-6l-2-2 2-2V2H6zm10 14.5V20H8v-3.5l4-4 4 4zM8 9.5V4h8v5.5l-4 4-4-4z"/></svg>
-              <span class="txn-wait-label">대기중 (D-3, 5월 9일)</span>
-            </div>
-            <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
+          <div class="txn-row">
+            <span class="txn-row-label">고객결제액</span>
+            <span class="txn-row-val">8,500원</span>
           </div>
+          <div class="txn-row">
+            <span class="txn-row-label">차감수수료</span>
+            <span class="txn-row-val red">-34원<span class="fee">(신용 0.40%)</span></span>
+          </div>
+          <div class="txn-amount-row">
+            <span class="txn-amount-label">입금예정</span>
+            <span class="txn-amount-val">8,466원</span>
+          </div>
+          <div class="txn-wait-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            <span class="txn-wait-label">대기중 (D-3, 5월 9일)</span>
+          </div>
+          <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
         </div>
       </div>
 
       <!-- 하나카드 -->
-      <div class="txn-item" style="border-bottom:none;">
-        <div class="txn-time">14:58</div>
-        <div class="txn-body">
-          <div class="txn-line-col">
-            <div class="txn-dot" style="background:#00B4D8;">
-              <span style="font-size:9px; color:#fff; font-weight:700;">하</span>
-            </div>
+      <div class="txn-item">
+        <div class="txn-left">
+          <span class="txn-date">5/6</span>
+          <span class="txn-time">14:58</span>
+        </div>
+        <div class="txn-divider"></div>
+        <div class="txn-right">
+          <div class="txn-header">
+            <div class="card-logo"><img src="카드사/하나카드.png" alt="하나"></div>
+            <span class="txn-card-name">하나카드</span>
           </div>
-          <div class="txn-content">
-            <div class="txn-card-name">하나카드</div>
-            <div class="txn-row">
-              <span class="txn-row-label">고객결제액</span>
-              <span class="txn-row-val">23,500원</span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">차감수수료</span>
-              <span class="txn-row-val red">-94원 <span class="fee">(신용 0.40%)</span></span>
-            </div>
-            <div class="txn-row">
-              <span class="txn-row-label">입금예정</span>
-              <span class="txn-row-val">23,406원</span>
-            </div>
-            <div class="txn-wait-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF9900"><path d="M6 2v6l2 2-2 2v6h12v-6l-2-2 2-2V2H6zm10 14.5V20H8v-3.5l4-4 4 4zM8 9.5V4h8v5.5l-4 4-4-4z"/></svg>
-              <span class="txn-wait-label">대기중 (D-2, 5월 8일)</span>
-            </div>
-            <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
+          <div class="txn-row">
+            <span class="txn-row-label">고객결제액</span>
+            <span class="txn-row-val">23,500원</span>
           </div>
+          <div class="txn-row">
+            <span class="txn-row-label">차감수수료</span>
+            <span class="txn-row-val red">-94원<span class="fee">(신용 0.40%)</span></span>
+          </div>
+          <div class="txn-amount-row">
+            <span class="txn-amount-label">입금예정</span>
+            <span class="txn-amount-val">23,406원</span>
+          </div>
+          <div class="txn-wait-row">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            <span class="txn-wait-label">대기중 (D-2, 5월 8일)</span>
+          </div>
+          <div class="txn-tip">실제 입금날까지 추적할테니 걱정마세요!</div>
         </div>
       </div>
 
