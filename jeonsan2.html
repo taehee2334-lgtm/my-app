@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>선정산 신청 완료</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#eef2f6; display:flex; justify-content:center; min-height:100vh; font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif; }
+    .frame { width:clamp(360px,100%,440px); background:#eef2f6; min-height:100vh; }
+
+    .header { background:white; display:flex; align-items:center; padding:14px 20px; }
+    .back-btn { background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; }
+    .header-title { flex:1; text-align:center; font-size:18px; font-weight:700; color:#2d91ff; letter-spacing:-0.3px; }
+
+    .content { padding:16px; display:flex; flex-direction:column; align-items:center; gap:14px; padding-top:32px; }
+
+    .btn-home { background:#2d91ff; color:white; border:none; border-radius:14px; padding:16px 18px; width:100%; font-size:16px; font-weight:700; font-family:inherit; cursor:pointer; text-align:center; display:block; text-decoration:none; }
+  </style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#3e486b"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <div class="header-title">선정산 신청 완료</div>
+    <div style="width:22px;"></div>
+  </div>
+
+  <div class="content">
+    <div style="width:64px;height:64px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    </div>
+
+    <div style="background:white;border-radius:20px;padding:26px 20px;width:100%;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+      <div style="font-size:18px;font-weight:800;color:#1a1a1a;line-height:1.6;margin-bottom:12px;">선정산 신청 완료!</div>
+      <div style="font-size:14px;color:#728094;line-height:1.8;">118,800원이<br>10분 이내로 입금될 예정이에요</div>
+    </div>
+
+    <div style="background:#e8fff2;border:1.5px solid #22c55e;border-radius:14px;padding:14px 16px;width:100%;">
+      <div style="font-size:13px;color:#3e486b;text-align:center;line-height:1.7;">카드사 입금 후 자동으로 정산되니<br>따로 상환하지 않으셔도 돼요!</div>
+    </div>
+
+    <div style="width:100%;">
+      <a href="home.html" class="btn-home">홈으로 돌아가기</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
