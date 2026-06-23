@@ -242,8 +242,10 @@
     <p style="font-size:14px; font-weight:400; color:#000; letter-spacing:-0.14px; line-height:1.6;">우리가게 매출,</p>
     <p style="font-size:14px; font-weight:400; color:#000; letter-spacing:-0.14px; line-height:1.6;">문제 없이 입금되고 있을까?</p>
   </div>
-  <p class="c2-link" style="font-size:16px; font-weight:600; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap;">미입금액 있는지 확인</p>
-  <svg class="c2-arrow" viewBox="0 0 24 24" fill="#2d91ff"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+  <p class="c2-link" onclick="goToMissing()" style="font-size:16px; font-weight:600; color:#2d91ff; letter-spacing:-0.16px; white-space:nowrap; cursor:pointer;">미입금액 있는지 확인</p>
+  <svg class="c2-arrow" onclick="goToMissing()" viewBox="0 0 24 24" fill="#2d91ff" style="cursor:pointer;"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+  <!-- 투명 클릭 오버레이 - 미입금액 영역 전체 -->
+  <div onclick="goToMissing()" style="position:absolute; left:5.22%; top:720px; width:89.30%; height:100px; cursor:pointer; z-index:9;"></div>
 
   <!-- ==============================  CARD 3: 가계부  ============================== -->
   <div class="card-3"></div>
@@ -309,5 +311,12 @@
   <p   class="bn-str-lb"  style="font-size:12px; font-weight:600; color:#728094; white-space:nowrap;">내매장</p>
 
 </div>
+
+<script>
+function goToMissing() {
+  var pages = ['missing1.html', 'missing2.html', 'missing3.html', 'missing4.html', 'missing5.html'];
+  window.location.href = pages[Math.floor(Math.random() * pages.length)];
+}
+</script>
 </body>
 </html>

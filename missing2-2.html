@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미입금액 확인</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#e0e0e0; display:flex; justify-content:center; min-height:100vh; font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif; }
+    .frame { width:clamp(360px,100%,440px); background:#f4f7f9; min-height:100vh; }
+
+    .header { background:white; display:flex; align-items:center; padding:14px 16px; border-bottom:1px solid #e8edf2; position:sticky; top:0; z-index:10; }
+    .back-btn { background:none; border:none; cursor:pointer; padding:4px; display:flex; align-items:center; }
+    .header-title { flex:1; text-align:center; font-size:17px; font-weight:600; color:#1a1a1a; }
+    .header-spacer { width:32px; }
+
+    .month-nav { background:white; display:flex; align-items:center; justify-content:center; gap:12px; padding:10px 16px; border-bottom:1px solid #e8edf2; }
+    .month-btn { background:none; border:none; cursor:pointer; display:flex; align-items:center; }
+    .month-pill { font-size:14px; font-weight:500; color:#3e486b; background:#f0f4f7; border-radius:20px; padding:5px 18px; }
+
+    .steps { display:flex; align-items:flex-start; justify-content:center; padding:14px 16px 10px; background:white; border-bottom:1px solid #e8edf2; }
+    .step { display:flex; flex-direction:column; align-items:center; gap:5px; }
+    .step-dot { width:10px; height:10px; border-radius:50%; background:#dde3ea; }
+    .step-dot.done { background:#2d91ff; }
+    .step-dot.active { width:14px; height:14px; background:#2d91ff; }
+    .step-label { font-size:10px; color:#aab2bd; white-space:nowrap; }
+    .step-label.done { color:#2d91ff; }
+    .step-label.active { color:#2d91ff; font-weight:700; }
+    .step-line { width:36px; height:2px; background:#dde3ea; margin-top:6px; }
+    .step-line.done { background:#2d91ff; }
+
+    .content { padding:14px; display:flex; flex-direction:column; gap:16px; margin-top:8px; }
+
+    .complete-card { background:white; border-radius:16px; padding:24px 20px; text-align:center; }
+    .complete-icon { width:60px; height:60px; background:#e8f5ff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+    .complete-title { font-size:16px; font-weight:700; color:#1a1a1a; margin-bottom:8px; }
+    .complete-desc { font-size:14px; color:#728094; line-height:1.6; }
+
+    .jeonsan-box { background:#fff9e6; border-radius:16px; padding:14px 16px; }
+    .jeonsan-tag { font-size:11px; color:#e08a00; background:#ffe9a0; border-radius:20px; padding:2px 10px; display:inline-block; margin-bottom:8px; }
+    .jeonsan-text { font-size:13px; color:#3e486b; margin-bottom:10px; font-weight:600; }
+    .btn-jeonsan { background:white; border:1.5px solid #FFB800; border-radius:10px; padding:12px; width:100%; font-size:14px; font-weight:700; color:#e08a00; font-family:inherit; cursor:pointer; text-align:center; }
+  </style>
+</head>
+<body>
+<div class="frame">
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#3e486b"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <div class="header-title">미입금액 확인</div>
+    <div class="header-spacer"></div>
+  </div>
+
+  <div class="month-nav">
+    <button class="month-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <div class="month-pill">26년 5월</div>
+    <button class="month-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#728094"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot done"></div>
+      <div class="step-label done">탐색시작</div>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step">
+      <div class="step-dot done"></div>
+      <div class="step-label done">이상발견!</div>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step">
+      <div class="step-dot done"></div>
+      <div class="step-label done">신고접수</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-dot active"></div>
+      <div class="step-label active">입금완료</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="complete-card">
+      <div class="complete-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#2d91ff"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+      </div>
+      <div class="complete-title">'국민' 카드사 전산망으로<br>정상 전표 증빙 자료를 안전하게 전달했어요</div>
+      <div class="complete-desc" style="margin-top:12px;">카드사 심사는 평일 기준 2~3일 내로 완료돼요</div>
+    </div>
+
+    <div class="jeonsan-box">
+      <div class="jeonsan-tag">기다리기 힘들다면?</div>
+      <div class="jeonsan-text">캐시노트가 먼저 입금해드릴까요?</div>
+      <button class="btn-jeonsan">선정산 신청하기</button>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
