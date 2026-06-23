@@ -119,62 +119,65 @@
     .txn-item { padding:18px 0; border-bottom:1px solid #f0f4f7; }
     .txn-item:last-child { border-bottom:none; }
 
-    .txn-meta { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
-    .txn-date { font-size:13px; color:#728094; min-width:28px; }
-    .txn-time { font-size:14px; font-weight:600; color:#000; }
-    .card-dot { width:20px; height:20px; border-radius:50%; flex-shrink:0; }
+    .txn-meta { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .txn-date { font-size:12px; color:#728094; min-width:26px; }
+    .txn-time { font-size:14px; font-weight:700; color:#000; }
+    .card-logo {
+      width:24px; height:24px; border-radius:50%; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:10px; font-weight:700; color:#fff;
+    }
     .txn-card-name { font-size:14px; font-weight:600; color:#000; }
 
-    .txn-body { padding-left:38px; }
-    .txn-row  { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
+    .txn-body { padding-left:42px; }
+    .txn-row  { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
     .txn-label { font-size:13px; color:#728094; }
     .txn-val   { font-size:13px; color:#000; }
-    .txn-fee-note { font-size:11px; color:#a0aab8; margin-left:4px; }
+    .txn-val.red { color:#e53935; }
+    .txn-fee-note { font-size:11px; color:#e53935; margin-left:3px; }
 
-    /* 입금금액 행 */
     .txn-amount-row {
       display:flex; justify-content:space-between; align-items:center;
       margin-top:8px; margin-bottom:8px;
     }
     .txn-status-label { font-size:14px; font-weight:600; color:#000; }
-    .txn-amount { font-size:14px; font-weight:600; color:#000; }
+    .txn-amount { font-size:14px; font-weight:700; color:#000; }
     .status-complete { color:#000; }
     .status-waiting { color:#ff8c00; }
 
-    /* 대기중 타이머 행 */
-    .timer-row { display:flex; align-items:center; gap:5px; margin-bottom:6px; }
-    .timer-row svg { width:14px; height:14px; fill:none; stroke:#728094; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .timer-row { display:flex; align-items:center; gap:5px; margin-bottom:8px; }
+    .timer-row svg { width:13px; height:13px; fill:none; stroke:#728094; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
     .timer-text { font-size:12px; color:#728094; }
 
-    /* 정상입금완료 badge */
     .badge-ok {
       display:inline-flex; align-items:center; gap:4px;
       background:#e8f5e9; border-radius:20px;
-      padding:4px 10px; font-size:12px; font-weight:600; color:#22c55e;
+      padding:5px 12px; font-size:12px; font-weight:600; color:#22c55e;
     }
     .badge-ok svg { width:13px; height:13px; fill:none; stroke:#22c55e; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
 
-    /* 누락의심 badge */
     .badge-miss {
       display:inline-flex; align-items:center; gap:4px;
       background:#fff3e0; border-radius:20px;
-      padding:4px 10px; font-size:12px; font-weight:600; color:#ff8c00;
+      padding:5px 12px; font-size:12px; font-weight:600; color:#ff8c00;
+      margin-bottom:8px;
     }
 
-    /* 자동검사/현황보기 버튼 행 */
-    .action-row { display:flex; align-items:center; gap:8px; margin-top:8px; }
+    /* 자동검사 + 현황보기 — 이어붙인 버튼 */
+    .action-row { display:flex; align-items:stretch; margin-top:4px; }
     .btn-check {
-      flex:1; background:#2d91ff; border-radius:8px;
-      padding:8px 0; text-align:center;
-      font-size:13px; font-weight:600; color:#fff;
-      cursor:pointer;
+      flex:1; background:#2d91ff;
+      border:1px solid #2d91ff; border-radius:8px 0 0 8px;
+      padding:10px 0; text-align:center;
+      font-size:13px; font-weight:600; color:#fff; cursor:pointer;
     }
     .btn-status {
-      flex:1; background:#fff; border:1px solid #2d91ff; border-radius:8px;
-      padding:8px 0; text-align:center;
+      flex:1; background:#fff;
+      border:1px solid #2d91ff; border-left:none;
+      border-radius:0 8px 8px 0;
+      padding:10px 0; text-align:center;
       font-size:13px; font-weight:600; color:#2d91ff;
-      display:flex; align-items:center; justify-content:center; gap:4px;
-      text-decoration:none;
+      display:flex; align-items:center; justify-content:center; gap:3px;
       cursor:pointer;
     }
     .btn-status svg { width:12px; height:12px; fill:none; stroke:#2d91ff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
@@ -284,7 +287,7 @@
       <div class="txn-meta">
         <span class="txn-date">5/3</span>
         <span class="txn-time">14:12</span>
-        <div class="card-dot" style="background:#0054a6;"></div>
+        <div class="card-logo" style="background:#0054a6;">신</div>
         <span class="txn-card-name">신한카드</span>
       </div>
       <div class="txn-body">
@@ -294,7 +297,7 @@
         </div>
         <div class="txn-row">
           <span class="txn-label">차감수수료</span>
-          <span class="txn-val">-200원<span class="txn-fee-note">(신용 0.40%)</span></span>
+          <span class="txn-val red">-200원<span class="txn-fee-note">(신용 0.40%)</span></span>
         </div>
         <div class="txn-amount-row">
           <span class="txn-status-label">입금완료</span>
@@ -312,7 +315,7 @@
       <div class="txn-meta">
         <span class="txn-date">5/3</span>
         <span class="txn-time">14:25</span>
-        <div class="card-dot" style="background:#f5a623;"></div>
+        <div class="card-logo" style="background:#f5a623;">국</div>
         <span class="txn-card-name">국민카드</span>
       </div>
       <div class="txn-body">
@@ -322,7 +325,7 @@
         </div>
         <div class="txn-row">
           <span class="txn-label">차감수수료</span>
-          <span class="txn-val">-18원<span class="txn-fee-note">(체크 0.15%)</span></span>
+          <span class="txn-val red">-18원<span class="txn-fee-note">(체크 0.15%)</span></span>
         </div>
         <div class="txn-amount-row">
           <span class="txn-status-label">입금완료</span>
@@ -340,7 +343,7 @@
       <div class="txn-meta">
         <span class="txn-date">5/2</span>
         <span class="txn-time">14:38</span>
-        <div class="card-dot" style="background:#1428a0;"></div>
+        <div class="card-logo" style="background:#1428a0;">삼</div>
         <span class="txn-card-name">삼성카드</span>
       </div>
       <div class="txn-body">
@@ -350,7 +353,7 @@
         </div>
         <div class="txn-row">
           <span class="txn-label">차감수수료</span>
-          <span class="txn-val">-1,800원<span class="txn-fee-note">(법인 1.50%)</span></span>
+          <span class="txn-val red">-1,800원<span class="txn-fee-note">(법인 1.50%)</span></span>
         </div>
         <div class="txn-amount-row">
           <span class="txn-status-label">입금대기</span>
@@ -379,7 +382,7 @@
       <div class="txn-meta">
         <span class="txn-date">5/3</span>
         <span class="txn-time">14:45</span>
-        <div class="card-dot" style="background:#555;"></div>
+        <div class="card-logo" style="background:#555;">현</div>
         <span class="txn-card-name">현대카드</span>
       </div>
       <div class="txn-body">
@@ -389,7 +392,7 @@
         </div>
         <div class="txn-row">
           <span class="txn-label">차감수수료</span>
-          <span class="txn-val">-34원<span class="txn-fee-note">(신용 0.40%)</span></span>
+          <span class="txn-val red">-34원<span class="txn-fee-note">(신용 0.40%)</span></span>
         </div>
         <div class="txn-amount-row">
           <span class="txn-status-label">입금완료</span>
@@ -407,7 +410,7 @@
       <div class="txn-meta">
         <span class="txn-date">5/3</span>
         <span class="txn-time">14:58</span>
-        <div class="card-dot" style="background:#00a0e9;"></div>
+        <div class="card-logo" style="background:#00a0e9;">하</div>
         <span class="txn-card-name">하나카드</span>
       </div>
       <div class="txn-body">
@@ -417,7 +420,7 @@
         </div>
         <div class="txn-row">
           <span class="txn-label">차감수수료</span>
-          <span class="txn-val">-94원<span class="txn-fee-note">(신용 0.40%)</span></span>
+          <span class="txn-val red">-94원<span class="txn-fee-note">(신용 0.40%)</span></span>
         </div>
         <div class="txn-amount-row">
           <span class="txn-status-label">입금완료</span>
