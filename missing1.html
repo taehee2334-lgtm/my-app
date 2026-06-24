@@ -37,13 +37,13 @@
     .step-line.done { background:#2d91ff; }
 
     /* Content area */
-    .content { padding:16px; display:flex; flex-direction:column; align-items:center; gap:0; }
+    .content { padding:20px; display:flex; flex-direction:column; align-items:center; gap:0; }
 
     /* Connector line between cards */
-    .connector { width:2px; height:20px; background:#dde3ea; }
+    .connector { width:2px; height:26px; background:#dde3ea; }
 
     /* Scan card */
-    .scan-card { background:white; border-radius:20px; padding:14px 18px; display:flex; align-items:center; gap:10px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .scan-card { background:white; border-radius:24px; padding:18px 20px; display:flex; align-items:center; justify-content:center; gap:10px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
     .scan-text { font-size:14px; color:#3e486b; font-weight:500; line-height:1.5; }
 
     /* Alert badge */
@@ -115,11 +115,14 @@
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
     </div>
     <div class="connector"></div>
-    <div style="background:#FFB800;border-radius:20px;padding:14px 20px;display:flex;align-items:center;gap:10px;justify-content:center;width:100%;">
-      <span style="font-size:18px;">👋</span>
-      <span style="font-size:16px;font-weight:800;color:white;">안심하세요! 누락건이 하나도 없어요</span>
+    <div style="background:white;border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:14px;justify-content:center;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.05);border:1.5px solid #deeeff;">
+      <span style="font-size:24px;">👋</span>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <span style="font-size:17px;font-weight:800;color:#2d91ff;">안심하세요!</span>
+        <span style="font-size:15px;font-weight:600;color:#1a1a1a;">누락건이 하나도 없어요</span>
+      </div>
     </div>
-    <div style="width:100%;background:white;border-radius:20px;margin-top:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+    <div style="width:100%;background:white;border-radius:24px;margin-top:20px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
       <div style="background:#f8fafc;padding:12px 20px;font-size:13px;font-weight:600;color:#728094;text-align:center;border-bottom:1px solid #f0f4f7;">과거 이력</div>
       <table style="width:100%;border-collapse:collapse;">
         <thead>

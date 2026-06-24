@@ -37,13 +37,13 @@
     .step-line.done { background:#2d91ff; }
 
     /* Content area */
-    .content { padding:16px; display:flex; flex-direction:column; align-items:center; gap:0; }
+    .content { padding:20px; display:flex; flex-direction:column; align-items:center; gap:16px; }
 
     /* Connector line between cards */
-    .connector { width:2px; height:20px; background:#dde3ea; }
+    .connector { width:2px; height:26px; background:#dde3ea; }
 
     /* Scan card */
-    .scan-card { background:white; border-radius:20px; padding:14px 18px; display:flex; align-items:center; gap:10px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .scan-card { background:white; border-radius:24px; padding:18px 20px; display:flex; align-items:center; justify-content:center; gap:10px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
     .scan-text { font-size:14px; color:#3e486b; font-weight:500; line-height:1.5; }
 
     /* Alert badge */
@@ -109,7 +109,7 @@
       <div class="step"><div class="step-dot "></div><div class="step-label ">입금완료</div></div>
     </div>
   </div>
-  <div class="content" style="gap:14px;padding-top:20px;">
+  <div class="content" style="gap:18px;padding-top:20px;">
     <div style="width:48px;height:48px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
     </div>
@@ -117,16 +117,19 @@
       포스기와 카드사 간의 통신 일시 오류로 인해<br>매출 데이터가 유실되었어요<br>이 돈을 받으려면 포스사(VAN사)의<br>전산 재전송이 필요해요
     </div>
     <button class="btn-green" style="width:100%;">누락건 원격으로 재전송 신청</button>
-    <div style="background:white;border-radius:20px;padding:16px 18px;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
-      <div style="font-size:11px;color:#a0aab6;text-align:center;margin-bottom:12px;">위 버튼을 누르면 해당 전산 내역 처리가 VAN 대리사에 자동으로 요청돼요</div>
-      <div style="font-size:13px;color:#3e486b;line-height:1.9;">
-        제 영업장의 사업자 번호는 <span style="color:#2d91ff;font-weight:700;">121-21-12121</span><br>
-        <span style="color:#2d91ff;font-weight:700;">5월 3일 14시 30분&nbsp;&nbsp;국민카드</span><br>
-        매입 누락된 건 원격으로 재전송 해주세요<br>
-        승인번호는 <span style="color:#2d91ff;font-weight:700;">12345678</span><br>
-        POS기 TID 번호는 <span style="color:#2d91ff;font-weight:700;">71234569</span> 이에요
+    <div style="background:white;border-radius:24px;padding:20px;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+      <div style="font-size:12px;color:#a0aab6;text-align:center;margin-bottom:14px;line-height:1.6;">위 버튼을 누르면 해당 전산 내역 처리가<br>VAN 관리점에 자동으로 요청돼요</div>
+      <div style="background:#F3FAFF;border-radius:16px;padding:18px 20px;">
+        <div style="font-size:13px;color:#3e486b;line-height:2.1;">
+          제 영업장의<br>
+          사업자 번호는 &nbsp;<span style="color:#2d91ff;font-weight:700;">121-21-12121</span><br>
+          <span style="color:#2d91ff;font-weight:700;">5월 3일 14시 30분 &nbsp;국민카드</span><br>
+          매입 누락된 건 원격으로 재전송 해주세요<br>
+          승인번호는 &nbsp;<span style="color:#2d91ff;font-weight:700;">12345678</span><br>
+          POS기 TID 번호는 &nbsp;<span style="color:#2d91ff;font-weight:700;">71234569</span> 이에요
+        </div>
+        <div style="text-align:right;margin-top:14px;"><span style="font-size:12px;color:#2d91ff;text-decoration:underline;cursor:pointer;">이 정보가 아닌가요?</span></div>
       </div>
-      <div style="text-align:right;margin-top:10px;"><span style="font-size:12px;color:#728094;text-decoration:underline;cursor:pointer;">이 정보가 아닌가요?</span></div>
     </div>
     <div style="font-size:12px;color:#2d91ff;text-align:center;">VAN 관리점에서 연락이 올 수 있어요 번호를 잘 확인해주세요!</div>
     <div style="width:100%;position:relative;">

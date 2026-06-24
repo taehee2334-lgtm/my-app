@@ -37,21 +37,21 @@
     .step-line.done { background:#2d91ff; }
 
     /* Content area */
-    .content { padding:16px; display:flex; flex-direction:column; align-items:center; gap:0; }
+    .content { padding:20px; display:flex; flex-direction:column; align-items:center; gap:0; }
 
     /* Connector line between cards */
-    .connector { width:2px; height:20px; background:#dde3ea; }
+    .connector { width:2px; height:26px; background:#dde3ea; }
 
     /* Scan card */
-    .scan-card { background:white; border-radius:20px; padding:14px 18px; display:flex; align-items:center; gap:10px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .scan-card { background:white; border-radius:24px; padding:18px 20px; display:flex; align-items:center; justify-content:center; gap:10px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
     .scan-text { font-size:14px; color:#3e486b; font-weight:500; line-height:1.5; }
 
     /* Alert badge */
-    .alert-badge { background:#FFB800; border-radius:20px; padding:14px 20px; display:flex; align-items:center; gap:10px; justify-content:center; width:100%; }
+    .alert-badge { background:#FFB800; border-radius:24px; padding:16px 22px; display:flex; align-items:center; gap:10px; justify-content:center; width:100%; }
     .alert-badge-text { font-size:18px; font-weight:800; color:white; letter-spacing:-0.2px; }
 
     /* Detail card */
-    .detail-card { background:white; border-radius:20px; padding:16px 20px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .detail-card { background:white; border-radius:24px; padding:20px 22px; width:100%; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
     .detail-row { display:flex; padding:8px 0; border-bottom:1px solid #f0f4f7; align-items:center; }
     .detail-row:last-child { border-bottom:none; }
     .detail-label { font-size:13px; color:#aab2bd; width:88px; flex-shrink:0; text-align:right; padding-right:14px; }
@@ -59,14 +59,14 @@
     .late-badge { display:flex; align-items:center; gap:3px; font-size:12px; color:#ff6b35; font-weight:700; margin-left:6px; white-space:nowrap; }
 
     /* Status text */
-    .status-text { font-size:13px; color:#2d91ff; font-weight:600; text-align:center; padding:10px 0 2px; }
+    .status-text { font-size:13px; color:#2d91ff; font-weight:600; text-align:center; padding:18px 0 6px; }
 
     /* Reason box */
-    .reason-box { border:1.5px solid #FFB800; border-radius:14px; padding:13px 16px; width:100%; background:white; margin-top:10px; }
+    .reason-box { border:1.5px solid #FFB800; border-radius:18px; padding:16px 18px; width:100%; background:white; margin-top:14px; }
     .reason-text { font-size:13px; color:#2d91ff; font-weight:600; text-align:center; }
 
     /* Button area */
-    .btn-area { width:100%; margin-top:14px; display:flex; flex-direction:column; gap:0; }
+    .btn-area { width:100%; margin-top:20px; display:flex; flex-direction:column; gap:14px; }
     .btn-row { position:relative; }
     .btn-hint { font-size:11px; color:#c0c8d4; text-align:right; padding:4px 2px; }
     .btn-primary { background:#2d91ff; color:white; border:none; border-radius:14px; padding:15px 18px; width:100%; font-size:15px; font-weight:700; font-family:inherit; cursor:pointer; text-align:center; display:block; text-decoration:none; }
@@ -75,7 +75,7 @@
     .btn-call { background:#2d91ff; color:white; border:none; border-radius:14px; padding:15px 18px; width:100%; font-size:15px; font-weight:700; font-family:inherit; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; }
 
     /* Jeonsan card */
-    .jeonsan-card { background:white; border-radius:20px; padding:16px 18px; width:100%; margin-top:14px; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .jeonsan-card { background:white; border-radius:24px; padding:20px 20px; width:100%; margin-top:20px; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
     .jeonsan-tag { background:#2d91ff; color:white; font-size:11px; font-weight:700; border-radius:20px; padding:3px 12px; display:inline-block; margin-bottom:10px; }
     .jeonsan-title { font-size:14px; font-weight:600; color:#3e486b; margin-bottom:12px; text-align:center; }
     .btn-jeonsan { background:white; border:1.5px solid #dde3ea; border-radius:12px; padding:12px; width:100%; font-size:14px; font-weight:600; color:#3e486b; font-family:inherit; cursor:pointer; text-align:center; }
@@ -146,11 +146,11 @@
     <div class="reason-box">
       <div class="reason-text">예상 지연 이유 : "연휴로 인한 지연"</div>
     </div>
-    <div style="background:#e8fff2;border:1.5px solid #22c55e;border-radius:14px;padding:14px 16px;margin-top:10px;width:100%;">
+    <div style="background:#e8fff2;border:1.5px solid #22c55e;border-radius:18px;padding:16px 18px;margin-top:16px;width:100%;">
       <div style="font-size:13px;color:#3e486b;text-align:center;line-height:1.7;">연휴가 끝난 뒤 첫 번째 또는 두 번째 영업일(평일)에<br>'한꺼번에 묶여서' 입금돼요</div>
     </div>
-    <div style="font-size:13px;color:#2d91ff;font-weight:600;text-align:center;padding:10px 0;">캐시노트가 끝까지 추적할테니 안심하세요!</div>
-    <div class="jeonsan-card" style="margin-top:14px;">
+    <div style="font-size:13px;color:#2d91ff;font-weight:600;text-align:center;padding:16px 0 6px;">캐시노트가 끝까지 추적할테니 안심하세요!</div>
+    <div class="jeonsan-card" style="margin-top:0;">
       <div class="jeonsan-tag">월세를 내야한다면?</div>
       <div class="jeonsan-title">캐시노트가 먼저 입금해드릴까요?</div>
       <button class="btn-jeonsan">선정산 신청하기</button>
