@@ -82,6 +82,19 @@
     .btn-jeonsan { background:white; border:1.5px solid #dde3ea; border-radius:12px; padding:12px; width:100%; font-size:14px; font-weight:600; color:#3e486b; font-family:inherit; cursor:pointer; text-align:center; }
 
 
+
+    /* ── Slide-in animation ── */
+    @keyframes slideDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .anim { opacity:0; animation:slideDown 0.45s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+    .d0 { animation-delay:0s; }
+    .d1 { animation-delay:0.9s; }
+    .d2 { animation-delay:1.8s; }
+    .d3 { animation-delay:2.7s; }
+    .d4 { animation-delay:3.6s; }
+    .d5 { animation-delay:4.5s; }
   </style>
 </head>
 <body>
@@ -111,17 +124,17 @@
     </div>
   </div>
   <div class="content">
-    <div class="scan-card">
+    <div class="scan-card anim d0">
       <span style="font-size:20px;">🔍</span>
       <div class="scan-text">입금현황에 이상이 없는지 확인하고 있어요!</div>
     </div>
-    <div class="connector"></div>
-    <div class="alert-badge">
+    <div class="connector anim d1"></div>
+    <div class="alert-badge anim d1">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
       <span class="alert-badge-text">누락 의심 !&nbsp; "1건"</span>
     </div>
-    <div class="connector"></div>
-    <div class="detail-card">
+    <div class="connector anim d2"></div>
+    <div class="detail-card anim d2">
       <div class="detail-row">
         <div class="detail-label">결제일 :</div>
         <div class="detail-value">5월 3일 오후 2시 30분</div>
@@ -143,12 +156,12 @@
         </div>
       </div>
     </div>
-    <div class="status-text">"미매입" 건으로 확인 되었어요</div>
-    <div class="reason-box">
+    <div class="status-text anim d3">"미매입" 건으로 확인 되었어요</div>
+    <div class="reason-box anim d3">
       <div class="reason-text">예상 지연 이유 : "중복 결제로 인한 매입보류"</div>
     </div>
 
-    <div class="btn-area">
+    <div class="btn-area anim d4">
       <div class="btn-row">
         <div class="btn-hint">전표내역이 자동 발송돼요</div>
         <a href="missing2-1.html" class="btn-primary">카드사로 증빙 전송</a>
@@ -158,7 +171,7 @@
         <button class="btn-outline" onclick="location.href='missing6.html'">하루 더 기다려 볼게요</button>
       </div>
     </div>
-    <div class="jeonsan-card">
+    <div class="jeonsan-card anim d5">
       <div class="jeonsan-tag">연휴 전 조기입금으로!</div>
       <div class="jeonsan-title">캐시노트가 먼저 입금해드릴까요?</div>
       <button class="btn-jeonsan" onclick="location.href='jeonsan1.html'">선정산 신청하기</button>

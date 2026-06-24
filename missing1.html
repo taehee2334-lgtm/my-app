@@ -81,6 +81,19 @@
     .btn-jeonsan { background:white; border:1.5px solid #dde3ea; border-radius:12px; padding:12px; width:100%; font-size:14px; font-weight:600; color:#3e486b; font-family:inherit; cursor:pointer; text-align:center; }
 
 
+
+    /* ── Slide-in animation ── */
+    @keyframes slideDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .anim { opacity:0; animation:slideDown 0.45s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+    .d0 { animation-delay:0s; }
+    .d1 { animation-delay:0.9s; }
+    .d2 { animation-delay:1.8s; }
+    .d3 { animation-delay:2.7s; }
+    .d4 { animation-delay:3.6s; }
+    .d5 { animation-delay:4.5s; }
   </style>
 </head>
 <body>
@@ -106,23 +119,23 @@
     </div>
   </div>
   <div class="content">
-    <div class="scan-card" style="margin-bottom:0;">
+    <div class="scan-card anim d0" style="margin-bottom:0;">
       <span style="font-size:20px;">🔍</span>
       <div class="scan-text">입금현황에 이상이 없는지 확인하고 있어요!</div>
     </div>
-    <div class="connector"></div>
-    <div style="width:48px;height:48px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+    <div class="connector anim d1"></div>
+    <div class="anim d1" style="width:48px;height:48px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
     </div>
-    <div class="connector"></div>
-    <div style="background:white;border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:14px;justify-content:center;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.05);border:1.5px solid #deeeff;">
+    <div class="connector anim d2"></div>
+    <div class="anim d2" style="background:white;border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:14px;justify-content:center;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.05);border:1.5px solid #deeeff;">
       <span style="font-size:24px;">👋</span>
       <div style="display:flex;flex-direction:column;gap:3px;">
         <span style="font-size:17px;font-weight:800;color:#2d91ff;">안심하세요!</span>
         <span style="font-size:15px;font-weight:600;color:#1a1a1a;">누락건이 하나도 없어요</span>
       </div>
     </div>
-    <div style="width:100%;background:white;border-radius:24px;margin-top:20px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+    <div class="anim d3" style="width:100%;background:white;border-radius:24px;margin-top:20px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
       <div style="background:#f8fafc;padding:12px 20px;font-size:13px;font-weight:600;color:#728094;text-align:center;border-bottom:1px solid #f0f4f7;">과거 이력</div>
       <table style="width:100%;border-collapse:collapse;">
         <thead>
